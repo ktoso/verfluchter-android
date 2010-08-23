@@ -1,0 +1,11 @@
+--2010-08-23 23:59:46--  http://www.gnu.org/licenses/gpl-3.0.txt
+Translacja www.gnu.org... 199.232.41.10
+Łączenie się z www.gnu.org|199.232.41.10|:80... połączono.
+Żądanie HTTP wysłano, oczekiwanie na odpowiedź... 200 OK
+Długość: 35147 (34K) [text/plain]
+Zapis do: `gpl-3.0.txt'
+
+     0K .......... .......... .......... ....                 100% 80,6K=0,4s
+
+2010-08-23 23:59:47 (80,6 KB/s) - zapisano `gpl-3.0.txt' [35147/35147]
+
