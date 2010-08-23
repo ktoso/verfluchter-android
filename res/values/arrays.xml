@@ -1,0 +1,6 @@
+<resources>
+    <string-array name="access_protocols">
+        <item>http://</item>
+        <item>https://</item>
+    </string-array>
+</resources>

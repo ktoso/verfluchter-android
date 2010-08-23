@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:background="@color/white">
+
+        <!--domain-->
+        <TextView
+                android:text="@string/domain_edit_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                style="@style/simpleBlackText"
+                />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:background="@color/white">
+
+            <TextView android:text="@string/https"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:padding="3dip"
+                      style="@style/simpleBlackText"
+                    />
+            <EditText android:id="@+id/domain_edittext"
+                      android:hint="@string/domain_edittext_hint"
+                      android:layout_width="fill_parent"
+                      android:layout_height="48px"
+                      android:inputType="textUri"
+                    />
+        </LinearLayout>
+
+        <!--basic auth login-->
+        <TextView
+                android:text="@string/basic_login_edit_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                style="@style/simpleBlackText"
+                />
+        <EditText android:id="@+id/basic_login_edittext"
+                  android:hint="@string/login_edittext_hint"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                />
+
+        <!--basic auth pass-->
+        <TextView
+                android:text="@string/basic_password_edit_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                style="@style/simpleBlackText"
+                />
+        <EditText android:id="@+id/basic_password_edittext"
+                  android:hint="@string/password_edittext_hint"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:password="true"
+                  android:inputType="textPassword"
+                />
+
+        <!--login-->
+        <TextView
+                android:text="@string/login_edit_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                style="@style/simpleBlackText"
+                />
+        <EditText android:id="@+id/login_edittext"
+                  android:hint="@string/login_edittext_hint"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                />
+
+        <!--pass-->
+        <TextView
+                android:text="@string/password_edit_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                style="@style/simpleBlackText"
+                />
+        <EditText android:id="@+id/password_edittext"
+                  android:hint="@string/password_edittext_hint"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:password="true"
+                  android:inputType="textPassword"
+                />
+
+        <!--working hour start-->
+        <TextView
+                android:text="@string/working_hour_start_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                style="@style/simpleBlackText"
+                />
+        <TimePicker android:id="@+id/working_hour_start_picker"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                />
+
+        <!--working hour end-->
+        <TextView
+                android:text="@string/working_hour_end_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                style="@style/simpleBlackText"
+                />
+        <TimePicker android:id="@+id/working_hour_end_picker"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                />
+
+        <!--noticications on/off-->
+        <CheckBox android:id="@+id/timer_service_check_checkbox"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/timer_service_check_text"
+                  style="@style/simpleBlackText"
+                />
+
+        <!--auto refresh data-->
+        <CheckBox android:id="@+id/refresher_service_check_checkbox"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/refresher_service_check_text"
+                  style="@style/simpleBlackText"
+                />
+
+        <Button android:id="@+id/save_settings_button"
+                android:text="@string/save_settings_button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                />
+    </LinearLayout>
+</ScrollView>

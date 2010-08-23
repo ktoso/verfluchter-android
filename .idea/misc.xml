@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DependencyValidationManager">
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+  </component>
+  <component name="GeneratorPluginComponent">
+    <option name="variableInitializers">
+      <TypeToTextMapping>
+        <option name="mapping">
+          <map>
+            <entry key="java.util.ArrayList">
+              <value>
+                <Entry>
+                  <option name="text" value="new java.util.ArrayList$&lt;&gt;$()" />
+                  <option name="type" value="java.util.ArrayList" />
+                  <option name="isAddRemoveMethodRequested" value="true" />
+                </Entry>
+              </value>
+            </entry>
+            <entry key="java.util.Collection">
+              <value>
+                <Entry>
+                  <option name="text" value="java.util.Collections.$&lt;&gt;$emptySet()" />
+                  <option name="type" value="java.util.Collection" />
+                  <option name="isAddRemoveMethodRequested" value="true" />
+                </Entry>
+              </value>
+            </entry>
+            <entry key="java.util.HashMap">
+              <value>
+                <Entry>
+                  <option name="text" value="new java.util.HashMap$&lt;&gt;$()" />
+                  <option name="type" value="java.util.HashMap" />
+                  <option name="isAddRemoveMethodRequested" value="false" />
+                </Entry>
+              </value>
+            </entry>
+            <entry key="java.util.HashSet">
+              <value>
+                <Entry>
+                  <option name="text" value="new java.util.HashSet$&lt;&gt;$()" />
+                  <option name="type" value="java.util.HashSet" />
+                  <option name="isAddRemoveMethodRequested" value="true" />
+                </Entry>
+              </value>
+            </entry>
+            <entry key="java.util.LinkedHashSet">
+              <value>
+                <Entry>
+                  <option name="text" value="new java.util.LinkedHashSet$&lt;&gt;$()" />
+                  <option name="type" value="java.util.LinkedHashSet" />
+                  <option name="isAddRemoveMethodRequested" value="true" />
+                </Entry>
+              </value>
+            </entry>
+            <entry key="java.util.List">
+              <value>
+                <Entry>
+                  <option name="text" value="java.util.Collections.$&lt;&gt;$emptyList()" />
+                  <option name="type" value="java.util.List" />
+                  <option name="isAddRemoveMethodRequested" value="true" />
+                </Entry>
+              </value>
+            </entry>
+            <entry key="java.util.Set">
+              <value>
+                <Entry>
+                  <option name="text" value="java.util.Collections.$&lt;&gt;$emptySet()" />
+                  <option name="type" value="java.util.Set" />
+                  <option name="isAddRemoveMethodRequested" value="true" />
+                </Entry>
+              </value>
+            </entry>
+            <entry key="java.util.SortedSet">
+              <value>
+                <Entry>
+                  <option name="text" value="new java.util.TreeSet$&lt;&gt;$()" />
+                  <option name="type" value="java.util.SortedSet" />
+                  <option name="isAddRemoveMethodRequested" value="true" />
+                </Entry>
+              </value>
+            </entry>
+          </map>
+        </option>
+      </TypeToTextMapping>
+    </option>
+  </component>
+  <component name="IdProvider" IDEtalkID="4663AD77C89A860783C42ED589CC849A" />
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" />
+    <option name="OPTION_SCOPE" value="protected" />
+    <option name="OPTION_HIERARCHY" value="true" />
+    <option name="OPTION_NAVIGATOR" value="true" />
+    <option name="OPTION_INDEX" value="true" />
+    <option name="OPTION_SEPARATE_INDEX" value="true" />
+    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
+    <option name="OPTION_DEPRECATED_LIST" value="true" />
+    <option name="OTHER_OPTIONS" value="" />
+    <option name="HEAP_SIZE" />
+    <option name="LOCALE" />
+    <option name="OPEN_IN_BROWSER" value="true" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="JavaSE-1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+  <component name="WebServicesPlugin" addRequiredLibraries="true" />
+</project>
+

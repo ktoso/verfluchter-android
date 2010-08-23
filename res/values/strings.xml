@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Verfluchter Android</string>
+    <string name="fillServerUrlPlease">Verfluchter server URL:</string>
+    <string name="serverURL">verfluchter.xsolve.pl</string>
+
+    <!-- menu strings etc -->
+    <string name="settings_menu_label">Ustawienia</string>
+    <string name="settings_menu_shortcut">U</string>
+    <string name="main_menu_label">Home</string>
+    <string name="main_menu_shortcut">H</string>
+    <string name="about_menu_label">About</string>
+    <string name="about_menu_shortcut">A</string>
+
+    <string name="continue_working_button">Pracuj dalej</string>
+    <string name="stop_working_button">Zakończ pracę na dziś</string>
+
+    <string name="domain_edit_label">Verfluchter domain</string>
+    <string name="domain_edittext_hint">verfluchter.company.com</string>
+    <string name="basic_login_edit_label">Basic Auth login:</string>
+    <string name="basic_password_edit_label">Basic Auth password:</string>
+    <string name="login_edit_label">Verfluchter login:</string>
+    <string name="password_edit_label">Verfluchter password:</string>
+    <string name="timer_service_check_text">Przypominaj mi o końcu pracy</string>
+    <string name="refresher_service_check_text">Automatycznie aktualizuj dane (co 10min)</string>
+    <string name="login_edittext_hint">Login</string>
+    <string name="password_edittext_hint">Password</string>
+    <string name="save_settings_button_text">Zapisz ustawienia</string>
+    <string name="https">https://</string>
+
+    <string name="about_text">
+Author: Konrad Malawski\n
+Email: konrad.malawski@xsolve.pl\n
+\n
+This app was written in order to ease my life by handling all the stuff concerned with logging my work time at work.
+The webapp I\'m connecting to doesn\'t have any REST interface, and I\'m basically just interacting with an simple website - that said, it works really quite well... ;-)\n
+\n
+The source of this program is available on the GNU GPLv3 license and can be downloaded from\n
+http://www.github.com/ktoso\n
+\n
+java.pl | xsolve.pl | project13.pl
+    </string>
+
+    <string name="startWork_button_text">Rozpocznij pracę</string>
+    <string name="endWork_button_text">Zakończ pracę</string>
+    <string name="workedTodayLabel">Przepracowałeś dzisiaj:</string>
+
+    <string name="dailyHoursLabel">Dziennie</string>
+    <string name="weeklyHoursLabel">Tygodniowo</string>
+    <string name="monthlyHoursLabel">Miesięcznie</string>
+    <string name="footerCopy">XSolve 2010; GNU GPLv3</string>
+
+    <string name="refresh_service_started">Refresh service started</string>
+    <string name="refresh_service_stopped">Refresh service stopped</string>
+    <string name="refresh_service_label">Refresh Service</string>
+    <string name="refresh_service_connected">Refresh service connected</string>
+    <string name="refresh_service_disconnected">Refresh service disconnected</string>
+
+    <string name="hey_stop_working_title">Już możesz przestać pracować :-)</string>
+    <string name="working_hour_start_label">O której godzinie rozpoczynasz pracę?</string>
+    <string name="working_hour_end_label">Po której godzinie kończysz pracę?</string>
+
+    <string name="am_i_working_yes">Pracuję</string>
+    <string name="am_i_working_no">Nie pracuję :-)</string>
+
+    <string name="today">Dzisiaj</string>
+</resources>
