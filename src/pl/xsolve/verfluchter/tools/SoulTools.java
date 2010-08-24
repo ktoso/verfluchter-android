@@ -129,4 +129,12 @@ public class SoulTools {
         }
         return "";
     }
+
+    public static void failIfResponseNotOk(RestResponse response) throws Exception {
+        if (!SoulTools.isResponseOK(response)) {
+            Log.d(TAG, "But the response code is not 200...");
+            Log.v(TAG, response == null ? "Response was null." : response.getResponse());
+            throw new Exception();
+        }
+    }
 }

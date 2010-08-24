@@ -18,9 +18,8 @@ public class Constants {
     public static final int HTTP_I_AM_A_TEAPOT = 418; // I'm a teapot
     public static final int HTTP_INTERNAL_SERVER_ERROR = 500; // Internal Server Error
     public static final int HTTP_NOT_IMPLEMENTED = 501; // Not Implemented
-    public static final int HTTP_VERSION_NOT_SUPPORTED = 505; // HTTP Version Not Supported
-
     public static final int HTTP_SERVICE_UNAVAILABLE = 503; // Service Unavailable
+    public static final int HTTP_VERSION_NOT_SUPPORTED = 505; // HTTP Version Not Supported
 
     public static final String DATE_FORMAT_YYYYMMDD = "yyyy-MM-dd";
 
