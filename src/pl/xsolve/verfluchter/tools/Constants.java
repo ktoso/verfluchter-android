@@ -21,8 +21,10 @@ public class Constants {
     public static final int HTTP_SERVICE_UNAVAILABLE = 503; // Service Unavailable
     public static final int HTTP_VERSION_NOT_SUPPORTED = 505; // HTTP Version Not Supported
 
-    public static final String DATE_FORMAT_YYYYMMDD = "yyyy-MM-dd";
+    public static final long MINUTE = 1000;
 
+    public static final String DATE_FORMAT_YYYYMMDD = "yyyy-MM-dd";
+    
     public static final String[] weekDays = new String[]{"Poniedziałek", "Wtorek", "Środa",
             "Czwartek", "Piątek", "Sobota", "Niedziela"};
 

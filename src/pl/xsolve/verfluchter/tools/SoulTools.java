@@ -3,6 +3,7 @@ package pl.xsolve.verfluchter.tools;
 import android.util.Log;
 import android.util.Pair;
 import pl.xsolve.verfluchter.rest.RestResponse;
+import pl.xsolve.verfluchter.rest.RestResponseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,8 +44,10 @@ public class SoulTools {
         return sb.toString();
     }
 
-    public static boolean isEmpty(String str) {
-        return str == null || str.trim().length() == 0;
+    public static boolean hasText(String str) {
+        return str != null
+                && !str.equals("")
+                && str.trim().length() > 0;
     }
 
     /**
@@ -102,6 +105,18 @@ public class SoulTools {
         return sdf.format(calendar.getTime());
     }
 
+    //todo this method probably sux
+    public static CharSequence getYesterdayString() {
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - 1);
+            return sdf.format(calendar.getTime());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Log.v(TAG, "Yesterday string creation failed");
+        }
+        return "";
+    }
+
     public static String prefixHttpsIfNeeded(String domain) {
         if (domain.startsWith("http://") || domain.startsWith("http://")) {
             return domain;
@@ -130,11 +145,13 @@ public class SoulTools {
         return "";
     }
 
+    @SuppressWarnings({"ConstantConditions"})
     public static void failIfResponseNotOk(RestResponse response) throws Exception {
         if (!SoulTools.isResponseOK(response)) {
             Log.d(TAG, "But the response code is not 200...");
             Log.v(TAG, response == null ? "Response was null." : response.getResponse());
-            throw new Exception();
+            throw new RestResponseException(response.getResponseCode());
         }
     }
 }
+                              

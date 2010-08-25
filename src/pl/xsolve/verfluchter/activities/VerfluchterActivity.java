@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -19,20 +18,16 @@ import org.apache.http.cookie.Cookie;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.rest.RequestMethod;
 import pl.xsolve.verfluchter.rest.RestAsyncTask;
-import pl.xsolve.verfluchter.rest.RestClient;
 import pl.xsolve.verfluchter.rest.RestResponse;
 import pl.xsolve.verfluchter.services.RefreshService;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
+import pl.xsolve.verfluchter.tools.Constants;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.AutoSettings.*;
 
 /**
  * @author Konrad Ktoso Malawski
@@ -44,9 +39,11 @@ public class VerfluchterActivity extends CommonViewActivity {
     Button stopWorkButton;
     ImageButton refreshButton;
     TextView hoursStatsTextView;
+    TextView workTimeTodayLabel;
     TextView workTimeToday;
     TextView currentlyWorkingText;
 
+    private Timer workTimeUpdaterTimer = new Timer();
 
     // Global Broadcast Receiver
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -69,7 +66,7 @@ public class VerfluchterActivity extends CommonViewActivity {
     Cookie verfluchtesCookie = null;
 
     //this pair represents the hours and mins worked today
-    Pair<Integer, Integer> todayTime = new Pair<Integer, Integer>(0, 0);
+    Pair<Integer, Integer> workedTime = new Pair<Integer, Integer>(0, 0);
 
     // am I currently working?
     boolean amICurrentlyWorking = false;
@@ -80,14 +77,13 @@ public class VerfluchterActivity extends CommonViewActivity {
     List<String> tygodniowo = new LinkedList<String>();
     List<String> miesiecznie = new LinkedList<String>();
 
-    private static String plainTextResponse;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
         hoursStatsTextView = (TextView) findViewById(R.id.hours_stats_textview);
+        workTimeTodayLabel = (TextView) findViewById(R.id.workTimeTodayLabel);
         workTimeToday = (TextView) findViewById(R.id.workTimeToday);
         stopWorkButton = (Button) findViewById(R.id.stopWork);
         startWorkButton = (Button) findViewById(R.id.startWork);
@@ -95,7 +91,7 @@ public class VerfluchterActivity extends CommonViewActivity {
         currentlyWorkingText = (TextView) findViewById(R.id.currently_working_text);
 
         initListeners();
-        Log.v(TAG, autoSettings.toString());
+        Log.v(TAG, autoSettings.print());
 
         if (getSettingBoolean(USE_REMINDER_SERVICE_B)) {
             stopService(new Intent(this, WorkTimeNotifierService.class));
@@ -161,7 +157,6 @@ public class VerfluchterActivity extends CommonViewActivity {
         miesiecznie.clear();
 
         updatedAt = new Date();
-        String todayDateString = SoulTools.getTodayDateString();
 
         for (String line : plainTextResponse.split("\n")) {
             if (line.trim().equals("")) {
@@ -209,21 +204,61 @@ public class VerfluchterActivity extends CommonViewActivity {
         Collections.reverse(tygodniowo);
         Collections.reverse(miesiecznie);
 
+        // update the "worked today|yesterday" stuff
+        String newestEntry = dziennie.get(0);
+        if (newestEntry.contains(SoulTools.getTodayDateString())) {
+            workTimeTodayLabel.setText(R.string.workedTodayLabel);
+        }else if(newestEntry.contains(SoulTools.getYesterdayString())){
+            workTimeTodayLabel.setText(R.string.workedYesterdayLabel);
+        }else{
+            workTimeTodayLabel.setText(R.string.workedLastTimeLabel);
+        }
+
+        // setup and restart the timer to add minutes to the worked time without fetching any resources
+        // yeah, if someone stops the timer on the website - we'll have wrong data. But thats why we have the refresh,
+        // or better cal it "resync" button. And also... why would anyone use the website if you have verfluchter-android? :-)
+        restartWorkTimeUpdater();
+
+        // update the long stats view
         hoursStatsTextView.setText(
                 getString(R.string.dailyHoursLabel) + "\n" + Joiner.on("\n").join(dziennie) + "\n\n"
                         + getString(R.string.weeklyHoursLabel) + "\n" + Joiner.on("\n").join(tygodniowo) + "\n\n"
                         + getString(R.string.monthlyHoursLabel) + "\n" + Joiner.on("\n").join(miesiecznie));//todo make this better
 
-        updateFooter();
+
+    }
+
+    private void restartWorkTimeUpdater() {
+        workTimeUpdaterTimer.cancel();
+
+        workTimeUpdaterTimer = new Timer();
+        workTimeUpdaterTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (!amICurrentlyWorking) {
+                    this.cancel();
+                }
+
+                updateWorkedTimeByOneMin();
+            }
+        }, Constants.MINUTE, Constants.MINUTE);
+    }
+
+    private void updateWorkedTimeByOneMin() {
+        int m = workedTime.second + 1;
+        int h;
+        if (m == 60) {
+            h = workedTime.first + 1;
+            m = 0;
+        } else {
+            h = workedTime.first;
+        }
+        updateWorkedToday(new Pair<Integer, Integer>(h, m));
     }
 
     private void updateWorkedToday(Pair<Integer, Integer> hourAndMin) {
-        todayTime = hourAndMin;
+        workedTime = hourAndMin;
         workTimeToday.setText(String.format("%dh %dm", hourAndMin.first, hourAndMin.second));
-    }
-
-    private void updateFooter() {
-//        footer.setText("Last updated at: " + updatedAt);
     }
 
     @Override
@@ -269,7 +304,6 @@ public class VerfluchterActivity extends CommonViewActivity {
         }
 
         public RestResponse callRefreshData() {
-            String responseMessage = null;
             RestResponse response = null;
             try {
                 response = callWebService("", RequestMethod.GET);
@@ -279,24 +313,19 @@ public class VerfluchterActivity extends CommonViewActivity {
 
                 SoulTools.failIfResponseNotOk(response);
                 return response;
-
-//                setAmICurrentlyWorking(responseMessage);
-//                return Html.fromHtml(responseMessage).toString();
             } catch (IOException e) {
-                e.printStackTrace();
-                if (response != null) {
-                    Log.e(TAG, "Failed while getting response, error code: " + response.getResponseCode() + ", message: " + response.getErrorMessage());
-                } else {
-                    Log.e(TAG, "Failed while getting the servers response.");
-                }
+                String message = response == null ? "Failed while getting the servers response."
+                        : "Failed while getting response, error code: " + response.getResponseCode() + ", message: " + response.getErrorMessage();
+                Log.e(TAG, message);
+                enqueueErrorMessage(message);
             } catch (NullPointerException e) {
                 String message = "Failed while getting the servers response.";
                 Log.e(TAG, message);
-//                showToast(message); //todo inform user somehow
+                enqueueErrorMessage(message);
             } catch (Exception e) {
-                String message = "Response error code was: " + response.getResponseCode();
+                String message = "Other exception Response was: " + response;
                 Log.e(TAG, message);
-//                showToast(message); //todo inform user somehow
+                enqueueErrorMessage(message);
                 e.printStackTrace();
             }
             return null;
@@ -310,17 +339,22 @@ public class VerfluchterActivity extends CommonViewActivity {
         @Override
         protected void onPostExecute(RestResponse restResponse) {
             dialog.dismiss();
-            if (restResponse != null) {
-                dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Parsing response. Please wait...", true);
 
-                String responseMessage = restResponse.getResponse();
-
-                setAmICurrentlyWorking(responseMessage);
-                String plainTextResponse = Html.fromHtml(responseMessage).toString();
-
-                if (plainTextResponse != null) {
-                    updateWorkedHoursStats(plainTextResponse);
+            if (hadErrors()) {
+                for (String error : errors) {
+                    showToast(error);
                 }
+                return;
+            }
+
+            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Parsing response. Please wait...", true);
+            String responseMessage = restResponse.getResponse();
+
+            setAmICurrentlyWorking(responseMessage);
+            String plainTextResponse = Html.fromHtml(responseMessage).toString();
+
+            if (plainTextResponse != null) {
+                updateWorkedHoursStats(plainTextResponse);
             }
 
             dialog.dismiss();
@@ -360,7 +394,6 @@ public class VerfluchterActivity extends CommonViewActivity {
         }
 
         private RestResponse callChangeWorkingStatus(boolean changeWorkingStatusTo) {
-            String responseMessage = null;
             RestResponse response = null;
             try {
                 String action = changeWorkingStatusTo ? "begin" : "end";
@@ -372,22 +405,19 @@ public class VerfluchterActivity extends CommonViewActivity {
 
                 return response;
             } catch (IOException e) {
-                e.printStackTrace();
-                if (response != null) {
-                    Log.e(TAG, "Failed while getting response, error code: " + response.getResponseCode() + ", message: " + response.getErrorMessage());
-                } else {
-                    Log.e(TAG, "Failed while getting the servers response.");
-                }
+                String message = response == null ? "Failed while getting the servers response."
+                        : "Failed while getting response, error code: " + response.getResponseCode() + ", message: " + response.getErrorMessage();
+                Log.e(TAG, message);
+                enqueueErrorMessage(message);
             } catch (NullPointerException e) {
                 String message = "Failed while getting the servers response.";
                 Log.e(TAG, message);
-//                showToast(message); //todo inform user somehow
+                enqueueErrorMessage(message);
             } catch (Exception e) {
-                String message = "Response error code was: " + response.getResponseCode();
+                String message = "Other exception Response was: " + response;
                 Log.e(TAG, message);
-//                showToast(message); //todo inform user somehow
+                enqueueErrorMessage(message);
                 e.printStackTrace();
-
             }
             return null;
         }
@@ -395,21 +425,25 @@ public class VerfluchterActivity extends CommonViewActivity {
         @Override
         protected void onPostExecute(RestResponse restResponse) {
             dialog.dismiss();
-            if (restResponse != null) {
 
-                dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Parsing response. \nPlease wait...", true);
-
-                String responseMessage = restResponse.getResponse();
-
-                setAmICurrentlyWorking(responseMessage);
-                String plainTextResponse = Html.fromHtml(responseMessage).toString();
-
-                if (plainTextResponse != null) {
-                    updateWorkedHoursStats(plainTextResponse);
+            if (hadErrors()) {
+                for (String error : errors) {
+                    showToast(error);
                 }
-
-                dialog.dismiss();
+                return;
             }
+
+            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Parsing response. \nPlease wait...", true);
+            String responseMessage = restResponse.getResponse();
+
+            setAmICurrentlyWorking(responseMessage);
+            String plainTextResponse = Html.fromHtml(responseMessage).toString();
+
+            if (plainTextResponse != null) {
+                updateWorkedHoursStats(plainTextResponse);
+            }
+
+            dialog.dismiss();
         }
     }
 }

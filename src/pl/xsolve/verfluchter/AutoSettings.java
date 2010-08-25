@@ -1,9 +1,12 @@
-package pl.xsolve.verfluchter.tools;
+package pl.xsolve.verfluchter;
 
-import android.app.Activity;
+import android.app.Application;
 import android.content.SharedPreferences;
 import android.util.Log;
 import pl.xsolve.verfluchter.activities.SettingsActivity;
+import pl.xsolve.verfluchter.tools.Constants;
+import pl.xsolve.verfluchter.tools.PasswdUtil;
+import pl.xsolve.verfluchter.tools.UberSimplePasswdUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +14,7 @@ import java.util.Map;
 /**
  * @author Konrad Ktoso Malawski
  */
-public class AutoSettings extends Activity {
+public class AutoSettings extends Application {
 
     // My instance, "the one to rule them all"
     private static AutoSettings myInstance;
@@ -19,7 +22,7 @@ public class AutoSettings extends Activity {
     // Logger tag
     private static final String TAG = "AutoSettings";
 
-    public static final String SETTINGS_NAME = "settings";
+    public static final String SETTINGS_NAME = "autoSettings";
 
     protected Map<String, Object> settings = new HashMap<String, Object>();
 
@@ -91,7 +94,7 @@ public class AutoSettings extends Activity {
             return;
         }
 
-        Log.d(TAG, "Persisting settings: " + settings);
+        Log.d(TAG, "Persisting autoSettings: " + settings);
 
         // We need an Editor object to make preference changes.
 //        SharedPreferences preferences = getSharedPreferences(SETTINGS_NAME, 0);
@@ -153,4 +156,9 @@ public class AutoSettings extends Activity {
         settings.put(key, value);
     }
 
+    public String print() {
+        StringBuilder sb = new StringBuilder("-- AutoSettings --\n");
+        sb.append(settings).append("\n");
+        return sb.append("------------------\n").toString();
+    }
 }

@@ -2,22 +2,26 @@ package pl.xsolve.verfluchter.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import pl.xsolve.verfluchter.R;
+import pl.xsolve.verfluchter.AutoSettings;
 import pl.xsolve.verfluchter.services.RefreshService;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
-import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.AutoSettings.*;
 
 /**
  * @author Konrad Ktoso Malawski
  */
 public class SettingsActivity extends CommonViewActivity {
+
+    AutoSettings autoSettings = AutoSettings.getInstance();
 
     Button saveButton;
     EditText domainEditText;
@@ -78,20 +82,23 @@ public class SettingsActivity extends CommonViewActivity {
     }
 
     private void onSaveClick() {
+        Log.v(TAG, autoSettings.print());
+
         String domain = domainEditText.getText().toString();
         domain = domain.replaceAll("http://", "").replaceAll("https://", "");
         autoSettings.setSetting(SERVER_DOMAIN_S, domain);
 
         autoSettings.setSetting(BASIC_AUTH_USER_S, basicLoginEditText.getText().toString());
+
         String basicPass = basicPasswordEditText.getText().toString();
-        if (!SoulTools.isEmpty(basicPass)) {
-            autoSettings.setSetting(MY_AUTH_PASS_S, basicPass);
+        if (SoulTools.hasText(basicPass)) {
+            autoSettings.setSetting(BASIC_AUTH_PASS_S, basicPass);
         }
 
         autoSettings.setSetting(MY_AUTH_USER_S, loginEditText.getText().toString());
 
         String pass = passwordEditText.getText().toString();
-        if (!SoulTools.isEmpty(pass)) {
+        if (SoulTools.hasText(pass)) {
             autoSettings.setSetting(MY_AUTH_PASS_S, pass);
         }
 
@@ -126,6 +133,8 @@ public class SettingsActivity extends CommonViewActivity {
             stopService(new Intent(this, RefreshService.class));
             showToast("Wyłączono serwis automatycznego odświeżania danych.");
         }
+
+        autoSettings.print();
 
         startActivityForResult(new Intent(this, VerfluchterActivity.class), 0);
     }

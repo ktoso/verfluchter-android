@@ -36,7 +36,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -217,12 +217,9 @@ public class RestClient {
         headerz.add(new BasicNameValuePair(name, value));
     }
 
-    public void addCookie(Cookie verfluchtesCookie) {
-        cookies.add(verfluchtesCookie);
-    }
-
-    public void addCookies(Collection<Cookie> cookies) {
-        this.cookies.addAll(cookies);
+    public void addCookies(Cookie... newCookies) {
+        cookies = new ArrayList<Cookie>(newCookies.length);
+        cookies.addAll(Arrays.asList(newCookies));
     }
 
     public void setupBasicAuth(String basicLogin, String basicPass) {

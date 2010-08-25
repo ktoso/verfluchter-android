@@ -43,7 +43,10 @@ java.pl | xsolve.pl | project13.pl
 
     <string name="startWork_button_text">Rozpocznij pracę</string>
     <string name="endWork_button_text">Zakończ pracę</string>
+
     <string name="workedTodayLabel">Przepracowałeś dzisiaj:</string>
+    <string name="workedYesterdayLabel">Wczoraj przepracowałeś:</string>
+    <string name="workedLastTimeLabel">Ostatnio przepracowałeś:</string>
 
     <string name="dailyHoursLabel">Dziennie</string>
     <string name="weeklyHoursLabel">Tygodniowo</string>

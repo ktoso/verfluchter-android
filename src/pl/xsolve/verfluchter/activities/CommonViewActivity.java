@@ -3,21 +3,13 @@ package pl.xsolve.verfluchter.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+import pl.xsolve.verfluchter.AutoSettings;
 import pl.xsolve.verfluchter.R;
-import pl.xsolve.verfluchter.tools.AutoSettings;
-import pl.xsolve.verfluchter.tools.Constants;
-import pl.xsolve.verfluchter.tools.PasswdUtil;
-import pl.xsolve.verfluchter.tools.UberSimplePasswdUtil;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Common class for all "View" Activities, is supports menu handling etc
@@ -30,7 +22,7 @@ public abstract class CommonViewActivity extends Activity {
     protected final AutoSettings autoSettings = AutoSettings.getInstance();
 
     /**
-     * This will restore all settings needed for the app to run properly
+     * This will restore all autoSettings needed for the app to run properly
      * and also start some of our services
      *
      * @param state the state to be restored from
@@ -38,15 +30,11 @@ public abstract class CommonViewActivity extends Activity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-
-        autoSettings.restoreSettings(getSharedPreferences("settings", 0));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
-        autoSettings.persistSettings(getSharedPreferences("settings", 0));
     }
 
     @Override

@@ -3,7 +3,9 @@
           package="pl.xsolve.verfluchter">
 
     <application android:icon="@drawable/icon"
-                 android:label="@string/app_name">
+                 android:label="@string/app_name"
+                 android:allowBackup="true"
+                 android:debuggable="true">
         <activity android:name=".activities.VerfluchterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
