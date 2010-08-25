@@ -20,7 +20,7 @@ import static pl.xsolve.verfluchter.tools.AutoSettings.*;
  *
  * @author Konrad Ktoso Malawski
  */
-public abstract class RestAsyncTask<A, B, C> extends AsyncTask<A, B, C> {
+public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
 
     protected String TAG = "RestAsyncTask";
 
