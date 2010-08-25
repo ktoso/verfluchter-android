@@ -30,15 +30,14 @@
 
     <string name="about_text">
 Author: Konrad Malawski\n
-Email: konrad.malawski@xsolve.pl\n
+Email: konrad.malawski@_\n
+    (java.pl | xsolve.pl | project13.pl)\n
 \n
 This app was written in order to ease my life by handling all the stuff concerned with logging my work time at work.
 The webapp I\'m connecting to doesn\'t have any REST interface, and I\'m basically just interacting with an simple website - that said, it works really quite well... ;-)\n
 \n
 The source of this program is available on the GNU GPLv3 license and can be downloaded from\n
 http://www.github.com/ktoso\n
-\n
-java.pl | xsolve.pl | project13.pl
     </string>
 
     <string name="startWork_button_text">Rozpocznij pracę</string>
