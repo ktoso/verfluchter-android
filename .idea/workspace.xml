@@ -15,29 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="01341843-5eb6-4b08-8eeb-76bf718f8577" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/EasySSLSocketFactory.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/EasySSLSocketFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponseException.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponseException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponse.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/PasswdUtil.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/PasswdUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/RefreshService.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/RefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/PreemperativeAuth.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/PreemperativeAuth.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/UberSimplePasswdUtil.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/UberSimplePasswdUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/AboutViewActivity.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/AboutViewActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/HeyStopWorkingReceiver.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/HeyStopWorkingReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestClient.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RequestMethod.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RequestMethod.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/AutoSettings.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestAsyncTask.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestAsyncTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/GPLv3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/CommonViewActivity.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/CommonViewActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/PreemperativeAuth.java" afterPath="" />
     </list>
     <ignored path="$USER_HOME_GRIFFON$/" />
     <ignored path="$USER_HOME_GRAILS$/" />
@@ -152,7 +131,7 @@
           <file leaf-file-name="EasySSLSocketFactory.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/EasySSLSocketFactory.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
+                <state line="42" column="13" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -160,21 +139,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EasyX509TrustManager.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="EasyX509TrustManager.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/EasyX509TrustManager.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PreemperativeAuth.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/PreemperativeAuth.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
+                <state line="36" column="13" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.5194805">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -206,24 +174,6 @@
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestClient.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="RestResponse.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponse.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="RestResponseException.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponseException.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.3046595">
                   <folding />
                 </state>
               </provider>
@@ -271,10 +221,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="29" selection-start="633" selection-end="633" vertical-scroll-proportion="0.25089607">
+                <state line="14" column="29" selection-start="633" selection-end="633" vertical-scroll-proportion="0.39252338">
                   <folding />
                 </state>
               </provider>
@@ -372,7 +322,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/EasySSLSocketFactory.java" />
-        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/PreemperativeAuth.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RequestMethod.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestAsyncTask.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestClient.java" />
@@ -387,6 +336,7 @@
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/AutoSettings.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/PreemperativeAuth.java" />
       </list>
     </option>
   </component>
@@ -883,12 +833,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1920" height="1056" extended-state="4" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32779622" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Atlassian " active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668883" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32668883" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JavaRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -904,7 +854,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="JSON Formatter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16550615" sideWeight="0.68438536" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16550615" sideWeight="0.66555923" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30786267" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22923589" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -928,7 +878,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug z settingsami fixed :-)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added license stuff" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -943,6 +893,7 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Minor fixes (fixes refreshing bug)" />
     <MESSAGE value="Bug z settingsami fixed :-)" />
+    <MESSAGE value="added license stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -988,43 +939,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RequestMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestAsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.3046595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="134" column="50" selection-start="5885" selection-end="5885" vertical-scroll-proportion="0.0">
@@ -1101,8 +1015,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="633" selection-end="633" vertical-scroll-proportion="0.25089607">
+        <state line="14" column="29" selection-start="633" selection-end="633" vertical-scroll-proportion="0.39252338">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.310219">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/RestClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/EasySSLSocketFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="13" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/rest/EasyX509TrustManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="13" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.5194805">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
