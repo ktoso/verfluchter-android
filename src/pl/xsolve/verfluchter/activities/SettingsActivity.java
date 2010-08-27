@@ -1,6 +1,5 @@
 package pl.xsolve.verfluchter.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,12 +9,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import pl.xsolve.verfluchter.R;
-import pl.xsolve.verfluchter.AutoSettings;
 import pl.xsolve.verfluchter.services.RefreshService;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
-import static pl.xsolve.verfluchter.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.AutoSettings.*;
 
 /**
  * @author Konrad Ktoso Malawski
@@ -132,6 +130,9 @@ public class SettingsActivity extends CommonViewActivity {
             stopService(new Intent(this, RefreshService.class));
             showToast("Wyłączono serwis automatycznego odświeżania danych.");
         }
+
+        // yeah, we did some setup - it may be the initial one - no one cares as long as we did setup stuff ;-)
+        autoSettings.setSetting(SETUP_DUE_B, false);
 
         autoSettings.persistSettings();
         autoSettings.print();

@@ -1,12 +1,26 @@
-package pl.xsolve.verfluchter;
+/*
+ * This file is part of verfluchter-android.
+ *
+ * verfluchter-android is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * verfluchter-android is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package pl.xsolve.verfluchter.tools;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.util.Log;
 import pl.xsolve.verfluchter.activities.SettingsActivity;
-import pl.xsolve.verfluchter.tools.Constants;
-import pl.xsolve.verfluchter.tools.PasswdUtil;
-import pl.xsolve.verfluchter.tools.UberSimplePasswdUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +56,7 @@ public class AutoSettings extends Activity {
     public static final String BASIC_AUTH_PASS_S = "BASIC_AUTH_PASS_S";
     public static final String USE_REMINDER_SERVICE_B = "USE_REMINDER_SERVICE_B";
     public static final String USE_REFRESHER_SERVICE_B = "USE_REFRESHER_SERVICE_B";
+    public static final String SETUP_DUE_B     = "SETUP_DUE_B";    
     public static final String WORKING_HOURS_START_HOUR_I = "WORKING_HOURS_START_HOUR_I";
     public static final String WORKING_HOURS_START_MIN_I = "WORKING_HOURS_START_MIN_I";
     public static final String WORKING_HOURS_END_HOUR_I = "WORKING_HOURS_END_HOUR_I";

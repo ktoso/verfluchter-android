@@ -1,10 +1,27 @@
+/*
+ * This file is part of verfluchter-android.
+ *
+ * verfluchter-android is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * verfluchter-android is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package pl.xsolve.verfluchter.rest;
 
 import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
 import org.apache.http.cookie.Cookie;
-import pl.xsolve.verfluchter.AutoSettings;
+import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
 import java.io.IOException;
@@ -12,7 +29,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static pl.xsolve.verfluchter.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.AutoSettings.*;
 
 /**
  * An common class for all AsyncTasks that need to use our rest client
