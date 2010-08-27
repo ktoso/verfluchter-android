@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.google.common.base.Joiner;
 import org.apache.http.cookie.Cookie;
+import pl.xsolve.verfluchter.AutoSettings;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.rest.RequestMethod;
 import pl.xsolve.verfluchter.rest.RestAsyncTask;
@@ -283,6 +284,10 @@ public class VerfluchterActivity extends CommonViewActivity {
      */
     public class RefreshDataAsyncTask extends RestAsyncTask<Void, Integer, RestResponse> {
 
+        public RefreshDataAsyncTask() {
+            super(VerfluchterActivity.autoSettings);
+        }
+
         ProgressDialog dialog;
 
         /**
@@ -375,6 +380,7 @@ public class VerfluchterActivity extends CommonViewActivity {
         boolean changeWorkingStatusTo;
 
         public ChangeWorkingStatusAsyncTask(boolean changeWorkingStatusTo) {
+            super(VerfluchterActivity.autoSettings);
             this.changeWorkingStatusTo = changeWorkingStatusTo;
         }
 

@@ -25,11 +25,15 @@ public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<
 
     protected String TAG = "RestAsyncTask";
 
-    protected AutoSettings autoSettings = AutoSettings.getInstance();
+    protected AutoSettings autoSettings;
 
     protected List<String> errors = new LinkedList<String>();
 
     private Cookie verfluchtesCookie = null;
+
+    protected RestAsyncTask(AutoSettings autoSettings) {
+        this.autoSettings = autoSettings;
+    }
 
     private RestResponse callLogin() throws IOException {
         String domain = autoSettings.getSettingString(SERVER_DOMAIN_S);

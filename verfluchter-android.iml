@@ -17,10 +17,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Android 2.1-update1 Platform" level="application" />
     <orderEntry type="library" name="HTMLCleaner 2.1" level="project" />
     <orderEntry type="library" name="Guava" level="project" />
     <orderEntry type="library" name="Google Guice 2.0 no-aop" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Android 2.1-update1 Platform" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="Android 2.1-update1 Platform" level="application" />
   </component>
 </module>
 

@@ -19,7 +19,7 @@ import pl.xsolve.verfluchter.R;
 public abstract class CommonViewActivity extends Activity {
     static final String TAG = "CommonViewActivity";
 
-    protected final AutoSettings autoSettings = AutoSettings.getInstance();
+    protected static AutoSettings autoSettings;
 
     /**
      * This will restore all autoSettings needed for the app to run properly
@@ -30,6 +30,9 @@ public abstract class CommonViewActivity extends Activity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
+
+        autoSettings = AutoSettings.getInstance(getSharedPreferences(AutoSettings.PREFS_NAME, Context.MODE_PRIVATE));
+        autoSettings.restoreSettings();
     }
 
     @Override

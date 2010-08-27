@@ -1,5 +1,6 @@
 package pl.xsolve.verfluchter.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +21,6 @@ import static pl.xsolve.verfluchter.AutoSettings.*;
  * @author Konrad Ktoso Malawski
  */
 public class SettingsActivity extends CommonViewActivity {
-
-    AutoSettings autoSettings = AutoSettings.getInstance();
 
     Button saveButton;
     EditText domainEditText;
@@ -134,6 +133,7 @@ public class SettingsActivity extends CommonViewActivity {
             showToast("Wyłączono serwis automatycznego odświeżania danych.");
         }
 
+        autoSettings.persistSettings();
         autoSettings.print();
 
         startActivityForResult(new Intent(this, VerfluchterActivity.class), 0);

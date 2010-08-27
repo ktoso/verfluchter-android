@@ -1,6 +1,6 @@
 package pl.xsolve.verfluchter;
 
-import android.app.Application;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.util.Log;
 import pl.xsolve.verfluchter.activities.SettingsActivity;
@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * @author Konrad Ktoso Malawski
  */
-public class AutoSettings extends Application {
+public class AutoSettings extends Activity {
 
     // My instance, "the one to rule them all"
     private static AutoSettings myInstance;
@@ -22,7 +22,8 @@ public class AutoSettings extends Application {
     // Logger tag
     private static final String TAG = "AutoSettings";
 
-    public static final String SETTINGS_NAME = "autoSettings";
+    public static final String PREFS_NAME = "settings";
+    SharedPreferences preferences;
 
     protected Map<String, Object> settings = new HashMap<String, Object>();
 
@@ -46,7 +47,7 @@ public class AutoSettings extends Application {
     public static final String WORKING_HOURS_END_HOUR_I = "WORKING_HOURS_END_HOUR_I";
     public static final String WORKING_HOURS_END_MIN_I = "WORKING_HOURS_END_MIN_I";
 
-    private AutoSettings() {
+    private AutoSettings(SharedPreferences sharedPreferences) {
         //default values and automatic setting+loading setup
         settings.put(SERVER_DOMAIN_S, Constants.DEFAULT.SERVER_DOMAIN);
         settings.put(MY_AUTH_USER_S, null);
@@ -60,12 +61,14 @@ public class AutoSettings extends Application {
         settings.put(WORKING_HOURS_END_HOUR_I, Constants.DEFAULT.WORKING_HOURS_END_HOUR);
         settings.put(WORKING_HOURS_END_MIN_I, Constants.DEFAULT.WORKING_HOURS_END_MIN);
 
-//        restoreSettings();
+        this.preferences = sharedPreferences;
+
+        restoreSettings();
     }
 
-    public static AutoSettings getInstance() {
+    public static AutoSettings getInstance(SharedPreferences sharedPreferences) {
         if (myInstance == null) {
-            myInstance = new AutoSettings();
+            myInstance = new AutoSettings(sharedPreferences);
         }
         return myInstance;
     }
@@ -73,8 +76,8 @@ public class AutoSettings extends Application {
     /**
      * Restore preferences and load them into our variables
      */
-    public void restoreSettings(SharedPreferences preferences) {
-//        SharedPreferences preferences = getSharedPreferences(SETTINGS_NAME, 0);
+    public void restoreSettings() {
+//        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, 0);
         for (String key : settings.keySet()) {
             Object value = restoreFromPreferences(preferences, key);
 //            if (key.contains("PASS") && value != null) {
@@ -89,7 +92,7 @@ public class AutoSettings extends Application {
     /**
      * Persist our cache into persistent SharedPreferences
      */
-    public void persistSettings(SharedPreferences preferences) {
+    public void persistSettings() {
         if (!getClass().equals(SettingsActivity.class)) {
             return;
         }
@@ -97,7 +100,7 @@ public class AutoSettings extends Application {
         Log.d(TAG, "Persisting autoSettings: " + settings);
 
         // We need an Editor object to make preference changes.
-//        SharedPreferences preferences = getSharedPreferences(SETTINGS_NAME, 0);
+//        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         for (String key : settings.keySet()) {
             Object value = getSetting(key);
