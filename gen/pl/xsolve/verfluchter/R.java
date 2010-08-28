@@ -54,14 +54,20 @@ public final class R {
         public static final int menu=0x7f080000;
     }
     public static final class string {
-        public static final int NOT_WORKING=0x7f060032;
+        public static final int NOT_WORKING_TEXT=0x7f060038;
+        public static final int NOT_WORKING_TITLE=0x7f060037;
+        public static final int NOT_YET_WORKING_TEXT=0x7f06002e;
         /**  notification messages for statuses 
          */
-        public static final int NOT_YET_WORKING=0x7f06002d;
-        public static final int WORKING=0x7f06002f;
-        public static final int YOU_CAN_STOP_WORKING=0x7f060031;
-        public static final int YOU_SHOULD_START_WORKING=0x7f06002e;
-        public static final int YOU_SHOULD_STILL_BE_WORKING=0x7f060030;
+        public static final int NOT_YET_WORKING_TITLE=0x7f06002d;
+        public static final int WORKING_TEXT=0x7f060032;
+        public static final int WORKING_TITLE=0x7f060031;
+        public static final int YOU_CAN_STOP_WORKING_TEXT=0x7f060036;
+        public static final int YOU_CAN_STOP_WORKING_TITLE=0x7f060035;
+        public static final int YOU_SHOULD_START_WORKING_TEXT=0x7f060030;
+        public static final int YOU_SHOULD_START_WORKING_TITLE=0x7f06002f;
+        public static final int YOU_SHOULD_STILL_BE_WORKING_TEXT=0x7f060034;
+        public static final int YOU_SHOULD_STILL_BE_WORKING_TITLE=0x7f060033;
         public static final int about_menu_label=0x7f060007;
         public static final int about_menu_shortcut=0x7f060008;
         public static final int about_text=0x7f060017;

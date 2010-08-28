@@ -36,9 +36,10 @@ import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.rest.RequestMethod;
 import pl.xsolve.verfluchter.rest.RestAsyncTask;
 import pl.xsolve.verfluchter.rest.RestResponse;
-import pl.xsolve.verfluchter.services.RefreshService;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
+import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.Constants;
+import pl.xsolve.verfluchter.tools.HourMin;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
 import java.io.IOException;
@@ -64,27 +65,13 @@ public class VerfluchterActivity extends CommonViewActivity {
     private Timer workTimeUpdaterTimer = new Timer();
 
     // Global Broadcast Receiver
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-
-            if (WorkTimeNotifierService.INTENT_HEY_STOP_WORKING.equals(action)) {
-                Log.d(TAG, "Received " + WorkTimeNotifierService.INTENT_HEY_STOP_WORKING);
-                showToast(getString(R.string.hey_stop_working_title));
-            }
-//            else if (RefreshService.INTENT_FRESH_DATA.equals(action)) {
-//                Log.d(TAG, "Received " + RefreshService.INTENT_FRESH_DATA);
-//                updateWorkedHoursStats(intent.getStringExtra("plainTextResponse"));
-//            }
-        }
-    };
+    BroadcastReceiver broadcastReceiver;
 
     // Login cookie ;-)
     Cookie verfluchtesCookie = null;
 
     //this pair represents the hours and mins worked today
-    Pair<Integer, Integer> workedTime = new Pair<Integer, Integer>(0, 0);
+    HourMin workedTime = new HourMin(0, 0);
 
     // am I currently working?
     boolean amICurrentlyWorking = false;
@@ -100,7 +87,7 @@ public class VerfluchterActivity extends CommonViewActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        if(isTrue(getSetting(SETUP_DUE_B, Boolean.class))){
+        if (!SoulTools.hasText(getSetting(AutoSettings.BASIC_AUTH_PASS_S, String.class))) {
             startActivityForResult(new Intent(this, SettingsActivity.class), 0);
             return;
         }
@@ -125,7 +112,9 @@ public class VerfluchterActivity extends CommonViewActivity {
 //            startService(new Intent(this, RefreshService.class));
         }
 
-        new RefreshDataAsyncTask().execute();
+        if (updatedAt == null) {
+            new RefreshDataAsyncTask().execute();
+        }
     }
 
     /**
@@ -133,9 +122,26 @@ public class VerfluchterActivity extends CommonViewActivity {
      */
     private void initListeners() {
         //super important global intent filter registration!
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+
+                if (WorkTimeNotifierService.INTENT_HEY_STOP_WORKING.equals(action)) {
+                    Log.d(TAG, "Received " + WorkTimeNotifierService.INTENT_HEY_STOP_WORKING);
+                    showToast(getString(R.string.hey_stop_working_title));
+                }
+//            else if (RefreshService.INTENT_FRESH_DATA.equals(action)) {
+//                Log.d(TAG, "Received " + RefreshService.INTENT_FRESH_DATA);
+//                updateWorkedHoursStats(intent.getStringExtra("plainTextResponse"));
+//            }
+            }
+        };
+
         IntentFilter filter = new IntentFilter(WorkTimeNotifierService.INTENT_HEY_STOP_WORKING);
         filter.addAction(WorkTimeNotifierService.INTENT_HEY_STOP_WORKING);
         registerReceiver(broadcastReceiver, filter);
+
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
 
@@ -202,7 +208,6 @@ public class VerfluchterActivity extends CommonViewActivity {
             }
 
             if (!byloTygodniowo && !byloMiesiecznie) {
-                //todo add "TODAY" checking, not just first record, and <b/> it :-)
                 String[] strings = line.split(" ");
                 updateWorkedToday(SoulTools.convertTimeStringToIntPair(strings[1]));
 
@@ -231,9 +236,9 @@ public class VerfluchterActivity extends CommonViewActivity {
         String newestEntry = dziennie.get(0);
         if (newestEntry.contains(SoulTools.getTodayDateString())) {
             workTimeTodayLabel.setText(R.string.workedTodayLabel);
-        }else if(newestEntry.contains(SoulTools.getYesterdayString())){
+        } else if (newestEntry.contains(SoulTools.getYesterdayString())) {
             workTimeTodayLabel.setText(R.string.workedYesterdayLabel);
-        }else{
+        } else {
             workTimeTodayLabel.setText(R.string.workedLastTimeLabel);
         }
 
@@ -262,21 +267,10 @@ public class VerfluchterActivity extends CommonViewActivity {
                     this.cancel();
                 }
 
+                Log.v(TAG, "");
                 updateWorkedTimeByOneMin();
             }
         }, Constants.MINUTE, Constants.MINUTE);
-    }
-
-    private void updateWorkedTimeByOneMin() {
-        int m = workedTime.second + 1;
-        int h;
-        if (m == 60) {
-            h = workedTime.first + 1;
-            m = 0;
-        } else {
-            h = workedTime.first;
-        }
-        updateWorkedToday(new Pair<Integer, Integer>(h, m));
     }
 
     private void updateWorkedToday(Pair<Integer, Integer> hourAndMin) {

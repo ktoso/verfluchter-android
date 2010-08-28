@@ -138,9 +138,6 @@ public class SettingsActivity extends CommonViewActivity {
         boolean useSound = useSoundCheckBox.isChecked();
         autoSettings.setSetting(USE_SOUND_B, useSound);
 
-        // yeah, we did some setup - it may be the initial one - no one cares as long as we did setup stuff ;-)
-        autoSettings.setSetting(SETUP_DUE_B, false);
-
         autoSettings.persistSettings();
         autoSettings.print();
 

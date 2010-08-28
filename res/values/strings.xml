@@ -69,11 +69,17 @@ http://www.github.com/ktoso\n
     <string name="use_sound_checkbox_text">Odtwórz dźwięk po aktualizacji notyfikacji</string>
 
     <!-- notification messages for statuses -->
-    <string name="NOT_YET_WORKING">Jeszcze nie musisz pracować.</string>
-    <string name="YOU_SHOULD_START_WORKING">Powinieneś już zacząć pracę.</string>
-    <string name="WORKING">Pracujesz obecnie.</string>
-    <string name="YOU_SHOULD_STILL_BE_WORKING">Powinieneś nadal pracować.</string>
-    <string name="YOU_CAN_STOP_WORKING">Możesz już wyjść z pracy.</string>
-    <string name="NOT_WORKING">Nie pracujesz obecnie.</string>
+    <string name="NOT_YET_WORKING_TITLE">Jeszcze nie musisz pracować</string>
+    <string name="NOT_YET_WORKING_TEXT">Jeszcze nie musisz pracować.</string>
+    <string name="YOU_SHOULD_START_WORKING_TITLE">Powinieneś już zacząć pracę.</string>
+    <string name="YOU_SHOULD_START_WORKING_TEXT">Powinieneś już zacząć pracę.</string>
+    <string name="WORKING_TITLE">Pracujesz obecnie.</string>
+    <string name="WORKING_TEXT">Pracujesz obecnie.</string>
+    <string name="YOU_SHOULD_STILL_BE_WORKING_TITLE">Powinieneś nadal pracować.</string>
+    <string name="YOU_SHOULD_STILL_BE_WORKING_TEXT">Powinieneś nadal pracować.</string>
+    <string name="YOU_CAN_STOP_WORKING_TITLE">Możesz już wyjść z pracy.</string>
+    <string name="YOU_CAN_STOP_WORKING_TEXT">Możesz już wyjść z pracy.</string>
+    <string name="NOT_WORKING_TITLE">Nie pracujesz obecnie.</string>
+    <string name="NOT_WORKING_TEXT">Nie pracujesz obecnie.</string>
 
 </resources>

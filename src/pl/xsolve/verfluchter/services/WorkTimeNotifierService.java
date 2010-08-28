@@ -124,6 +124,7 @@ public class WorkTimeNotifierService extends Service {
         switch (workStatus) {
             case YOU_CAN_STOP_WORKING:
                 titleText = getString(workStatus.contextTitle);
+                contentTitle = getString(workStatus.contextTitle);
                 contentText = getString(workStatus.contentText);
                 break;
             default:
@@ -135,6 +136,9 @@ public class WorkTimeNotifierService extends Service {
         Intent notificationIntent = new Intent(this, VerfluchterActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+
+        // this Notification will be canceled after the user clicks it
+        notification.defaults |= Notification.FLAG_AUTO_CANCEL;
 
 //        if(isTrue(autoSettings.getSetting(AutoSettings.USE_SOUND_B, Boolean.class))){
 //            notification.defaults |= Notification.DEFAULT_SOUND;

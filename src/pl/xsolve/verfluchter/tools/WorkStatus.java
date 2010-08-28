@@ -25,18 +25,18 @@ import pl.xsolve.verfluchter.R;
  * @author Konrad Malawski
  */
 public enum WorkStatus {
-    NOT_YET_WORKING(R.string.NOT_YET_WORKING),
-    YOU_SHOULD_START_WORKING(R.string.YOU_SHOULD_START_WORKING),
-    WORKING(R.string.WORKING),
-    YOU_SHOULD_STILL_BE_WORKING(R.string.YOU_SHOULD_STILL_BE_WORKING),
-    YOU_CAN_STOP_WORKING(R.string.YOU_CAN_STOP_WORKING),
-    NOT_WORKING(R.string.NOT_WORKING);
+    NOT_YET_WORKING(R.string.NOT_YET_WORKING_TITLE, R.string.NOT_YET_WORKING_TEXT),
+    YOU_SHOULD_START_WORKING(R.string.YOU_SHOULD_START_WORKING_TITLE, R.string.YOU_SHOULD_START_WORKING_TEXT),
+    WORKING(R.string.WORKING_TITLE, R.string.WORKING_TEXT),
+    YOU_SHOULD_STILL_BE_WORKING(R.string.YOU_SHOULD_STILL_BE_WORKING_TITLE, R.string.YOU_SHOULD_STILL_BE_WORKING_TEXT),
+    YOU_CAN_STOP_WORKING(R.string.YOU_CAN_STOP_WORKING_TITLE, R.string.YOU_CAN_STOP_WORKING_TEXT),
+    NOT_WORKING(R.string.NOT_WORKING_TITLE, R.string.NOT_WORKING_TEXT);
 
     public final int contextTitle;
     public final int contentText;
 
-    WorkStatus(int contentText) {
-        this.contextTitle = R.string.app_name;
+    WorkStatus(int contextTitle, int contentText) {
+        this.contextTitle = contextTitle;
         this.contentText = contentText;
     }
 }

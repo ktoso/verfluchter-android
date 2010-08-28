@@ -61,7 +61,6 @@ public class Constants {
         public static final Integer WORKING_HOURS_START_MIN = 0;
         public static final Integer WORKING_HOURS_END_HOUR = 16;
         public static final Integer WORKING_HOURS_END_MIN = 0;
-        public static final Boolean SETUP_DUE = true;
         public static final Boolean USE_SOUND = false;
 
         private DEFAULT() {

@@ -56,7 +56,6 @@ public class AutoSettings extends Activity {
     public static final String BASIC_AUTH_PASS_S = "BASIC_AUTH_PASS_S";
     public static final String USE_REMINDER_SERVICE_B = "USE_REMINDER_SERVICE_B";
     public static final String USE_REFRESHER_SERVICE_B = "USE_REFRESHER_SERVICE_B";
-    public static final String SETUP_DUE_B     = "SETUP_DUE_B";    
     public static final String WORKING_HOURS_START_HOUR_I = "WORKING_HOURS_START_HOUR_I";
     public static final String WORKING_HOURS_START_MIN_I = "WORKING_HOURS_START_MIN_I";
     public static final String WORKING_HOURS_END_HOUR_I = "WORKING_HOURS_END_HOUR_I";
@@ -77,7 +76,6 @@ public class AutoSettings extends Activity {
         settings.put(WORKING_HOURS_END_HOUR_I, Constants.DEFAULT.WORKING_HOURS_END_HOUR);
         settings.put(WORKING_HOURS_END_MIN_I, Constants.DEFAULT.WORKING_HOURS_END_MIN);
         settings.put(USE_SOUND_B, Constants.DEFAULT.USE_SOUND);
-        settings.put(SETUP_DUE_B, Constants.DEFAULT.SETUP_DUE);
 
         this.preferences = sharedPreferences;
 
