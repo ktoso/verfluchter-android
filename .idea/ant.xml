@@ -2,6 +2,18 @@
 <project version="4">
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
+    <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <additionalClassPath>
+        <entry dir="file://$PROJECT_DIR$/../../libs/android-sdk-linux_86/tools/lib/x86" />
+      </additionalClassPath>
+      <antReference projectDefault="true" />
+      <customJdkName value="" />
+      <maximumHeapSize value="128" />
+      <maximumStackSize value="2" />
+      <properties>
+        <property name="sdk.dir" value="../../libs/android-sdk-linux_86" />
+      </properties>
+    </buildFile>
   </component>
 </project>
 
