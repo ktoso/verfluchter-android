@@ -107,10 +107,6 @@ public class AutoSettings extends Activity {
      * Persist our cache into persistent SharedPreferences
      */
     public void persistSettings() {
-        if (!getClass().equals(SettingsActivity.class)) {
-            return;
-        }
-
         Log.d(TAG, "Persisting autoSettings: " + settings);
 
         // We need an Editor object to make preference changes.
@@ -165,7 +161,7 @@ public class AutoSettings extends Activity {
     }
 
     public String print() {
-        StringBuilder sb = new StringBuilder("-- AutoSettings --\n");
+        StringBuilder sb = new StringBuilder("-- AutoSettings (" + this + ") --\n");
         sb.append(settings).append("\n");
         return sb.append("------------------\n").toString();
     }

@@ -109,6 +109,7 @@ public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<
     private void setupLoginAuth(RestClient restClient) {
         restClient.addParam("username", autoSettings.getSetting(MY_AUTH_USER_S, String.class));
         restClient.addParam("password", autoSettings.getSetting(MY_AUTH_PASS_S, String.class));
+        restClient.addParam("remember", String.valueOf(1));
     }
 
     private void setupCookieAuth(RestClient restClient) {

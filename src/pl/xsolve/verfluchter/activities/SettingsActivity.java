@@ -14,6 +14,7 @@ import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
 import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 
 /**
  * @author Konrad Ktoso Malawski
@@ -59,7 +60,7 @@ public class SettingsActivity extends CommonViewActivity {
         useRefresherCheckBox.setChecked(getSetting(USE_REFRESHER_SERVICE_B, Boolean.class));
 
         useSoundCheckBox = (CheckBox) findViewById(R.id.use_sound_checkbox);
-        useSoundCheckBox.setChecked(getSetting(USE_SOUND_B, Boolean.class));
+        useSoundCheckBox.setChecked(isTrue(getSetting(USE_SOUND_B, Boolean.class)));
 
         workingHourStartPicker = (TimePicker) findViewById(R.id.working_hour_start_picker);
         workingHourStartPicker.setIs24HourView(true);

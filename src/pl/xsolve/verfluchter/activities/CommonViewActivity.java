@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,9 +50,11 @@ public abstract class CommonViewActivity extends Activity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
+        Log.v(TAG, "CommonViewActivity onCreate...");        
 
         autoSettings = AutoSettings.getInstance(getPreferences(MODE_PRIVATE));
         autoSettings.restoreSettings();
+        Log.v(TAG, "Loaded settings: " + autoSettings.print());
     }
 
     @Override

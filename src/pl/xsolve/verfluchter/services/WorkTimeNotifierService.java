@@ -99,8 +99,6 @@ public class WorkTimeNotifierService extends Service {
         GregorianCalendar now = new GregorianCalendar();
 //        if (isWorking()) {
         if (SoulTools.itsWeekend(now)) {
-            //todo remove this
-            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
             return;
         }
 
