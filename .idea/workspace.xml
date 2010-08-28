@@ -15,14 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01341843-5eb6-4b08-8eeb-76bf718f8577" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verfluchter-android.iml" afterPath="$PROJECT_DIR$/verfluchter-android.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Guava.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Guava.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ant-compile.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ant-compile.sh" afterPath="$PROJECT_DIR$/ant-compile.sh" />
     </list>
     <ignored path="$USER_HOME$/.griffon/" />
     <ignored path="$USER_HOME$/.grails/" />
@@ -181,7 +175,7 @@
           <file leaf-file-name="ant-compile.sh" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ant-compile.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="1" column="60" selection-start="70" selection-end="70" vertical-scroll-proportion="0.017964073">
+                <state line="1" column="34" selection-start="44" selection-end="44" vertical-scroll-proportion="0.017964073">
                   <folding />
                 </state>
               </provider>
@@ -1007,7 +1001,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ant-compile.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="60" selection-start="70" selection-end="70" vertical-scroll-proportion="0.017964073">
+        <state line="1" column="34" selection-start="44" selection-end="44" vertical-scroll-proportion="0.017964073">
           <folding />
         </state>
       </provider>
