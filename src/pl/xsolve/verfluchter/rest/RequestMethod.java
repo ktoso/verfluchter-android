@@ -22,5 +22,8 @@ package pl.xsolve.verfluchter.rest;
  */
 public enum RequestMethod {
     GET,
-    POST
+    POST,
+    HEAD, // not implemented yet
+    PUT, // not implemented yet
+    DELETE // not implemented yet    
 }

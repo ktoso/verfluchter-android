@@ -170,5 +170,9 @@ public class SoulTools {
             throw new RestResponseException(response.getResponseCode());
         }
     }
+
+    public static boolean isTrue(Boolean bool) {
+        return bool == null ?  false : bool;
+    }
 }
                               

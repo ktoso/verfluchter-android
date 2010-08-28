@@ -75,6 +75,7 @@ public class AutoSettings extends Activity {
         settings.put(WORKING_HOURS_START_MIN_I, Constants.DEFAULT.WORKING_HOURS_START_MIN);
         settings.put(WORKING_HOURS_END_HOUR_I, Constants.DEFAULT.WORKING_HOURS_END_HOUR);
         settings.put(WORKING_HOURS_END_MIN_I, Constants.DEFAULT.WORKING_HOURS_END_MIN);
+        settings.put(SETUP_DUE_B, Constants.DEFAULT.SETUP_DUE);
 
         this.preferences = sharedPreferences;
 
@@ -118,7 +119,7 @@ public class AutoSettings extends Activity {
 //        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         for (String key : settings.keySet()) {
-            Object value = getSetting(key);
+            Object value = getSetting(key, Object.class);
 //            if (key.contains("PASS") && value != null) {
 //                value = passwdUtil.encrypt((String) value);
 //            }
@@ -158,16 +159,8 @@ public class AutoSettings extends Activity {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T getSetting(String key) {
+    public <T> T getSetting(String key, Class<T> clazz) {
         return (T) settings.get(key);
-    }
-
-    public String getSettingString(String key) {
-        return (String) settings.get(key);
-    }
-
-    public Boolean getSettingBoolean(String key) {
-        return (Boolean) settings.get(key);
     }
 
     public <T> void setSetting(String key, T value) {

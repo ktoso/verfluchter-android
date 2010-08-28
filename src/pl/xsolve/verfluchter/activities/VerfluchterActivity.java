@@ -45,6 +45,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 
 /**
  * @author Konrad Ktoso Malawski
@@ -99,6 +100,11 @@ public class VerfluchterActivity extends CommonViewActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        if(isTrue(getSetting(SETUP_DUE_B, Boolean.class))){
+            startActivityForResult(new Intent(this, SettingsActivity.class), 0);
+            return;
+        }
+
         hoursStatsTextView = (TextView) findViewById(R.id.hours_stats_textview);
         workTimeTodayLabel = (TextView) findViewById(R.id.workTimeTodayLabel);
         workTimeToday = (TextView) findViewById(R.id.workTimeToday);
@@ -110,7 +116,7 @@ public class VerfluchterActivity extends CommonViewActivity {
         initListeners();
         Log.v(TAG, autoSettings.print());
 
-        if (getSettingBoolean(USE_REMINDER_SERVICE_B)) {
+        if (getSetting(USE_REMINDER_SERVICE_B, Boolean.class)) {
             stopService(new Intent(this, WorkTimeNotifierService.class));
             startService(new Intent(this, WorkTimeNotifierService.class));
             showToast("Uaktywniono serwis powiadamiania o przekroczonym czasie pracy.");

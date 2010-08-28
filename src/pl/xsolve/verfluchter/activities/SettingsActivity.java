@@ -39,33 +39,33 @@ public class SettingsActivity extends CommonViewActivity {
         saveButton = (Button) findViewById(R.id.save_settings_button);
 
         domainEditText = (EditText) findViewById(R.id.domain_edittext);
-        domainEditText.setText(autoSettings.<CharSequence>getSetting(SERVER_DOMAIN_S));
+        domainEditText.setText(autoSettings.getSetting(SERVER_DOMAIN_S, String.class));
 
         basicLoginEditText = (EditText) findViewById(R.id.basic_login_edittext);
-        basicLoginEditText.setText(autoSettings.<CharSequence>getSetting(BASIC_AUTH_USER_S));
+        basicLoginEditText.setText(autoSettings.getSetting(BASIC_AUTH_USER_S, String.class));
 
         basicPasswordEditText = (EditText) findViewById(R.id.basic_password_edittext);
 
         loginEditText = (EditText) findViewById(R.id.login_edittext);
-        loginEditText.setText(autoSettings.<CharSequence>getSetting(MY_AUTH_USER_S));
+        loginEditText.setText(autoSettings.getSetting(MY_AUTH_USER_S, String.class));
 
         passwordEditText = (EditText) findViewById(R.id.password_edittext);
 
         useWorkTimeNotifierCheckBox = (CheckBox) findViewById(R.id.timer_service_check_checkbox);
-        useWorkTimeNotifierCheckBox.setChecked(autoSettings.<Boolean>getSetting(USE_REMINDER_SERVICE_B));
+        useWorkTimeNotifierCheckBox.setChecked(getSetting(USE_REMINDER_SERVICE_B, Boolean.class));
 
         useRefresherCheckBox = (CheckBox) findViewById(R.id.refresher_service_check_checkbox);
-        useRefresherCheckBox.setChecked(autoSettings.<Boolean>getSetting(USE_REFRESHER_SERVICE_B));
+        useRefresherCheckBox.setChecked(getSetting(USE_REFRESHER_SERVICE_B, Boolean.class));
 
         workingHourStartPicker = (TimePicker) findViewById(R.id.working_hour_start_picker);
         workingHourStartPicker.setIs24HourView(true);
-        workingHourStartPicker.setCurrentHour(autoSettings.<Integer>getSetting(WORKING_HOURS_START_HOUR_I));
-        workingHourStartPicker.setCurrentMinute(autoSettings.<Integer>getSetting(WORKING_HOURS_START_MIN_I));
+        workingHourStartPicker.setCurrentHour(getSetting(WORKING_HOURS_START_HOUR_I, Integer.class));
+        workingHourStartPicker.setCurrentMinute(getSetting(WORKING_HOURS_START_MIN_I, Integer.class));
 
         workingHourEndPicker = (TimePicker) findViewById(R.id.working_hour_end_picker);
         workingHourEndPicker.setIs24HourView(true);
-        workingHourEndPicker.setCurrentHour(autoSettings.<Integer>getSetting(WORKING_HOURS_END_HOUR_I));
-        workingHourEndPicker.setCurrentMinute(autoSettings.<Integer>getSetting(WORKING_HOURS_END_MIN_I));
+        workingHourEndPicker.setCurrentHour(getSetting(WORKING_HOURS_END_HOUR_I, Integer.class));
+        workingHourEndPicker.setCurrentMinute(getSetting(WORKING_HOURS_END_MIN_I, Integer.class));
 
         initListeners();
     }

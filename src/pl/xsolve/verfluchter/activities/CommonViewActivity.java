@@ -108,12 +108,8 @@ public abstract class CommonViewActivity extends Activity {
     }
 
     //------------delegates------------------------------------------------------------------------
-    public String getSettingString(String key) {
-        return autoSettings.getSettingString(key);
-    }
-
-    public Boolean getSettingBoolean(String key) {
-        return autoSettings.getSettingBoolean(key);
+    public <T> T getSetting(String key, Class<T> clazz) {
+        return (T) autoSettings.getSetting(key, clazz);
     }
 
     public <T> void setSetting(String key, T value) {

@@ -53,7 +53,7 @@ public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<
     }
 
     private RestResponse callLogin() throws IOException {
-        String domain = autoSettings.getSettingString(SERVER_DOMAIN_S);
+        String domain = autoSettings.getSetting(SERVER_DOMAIN_S, String.class);
 
         setupLoginAuth(restClient);
         setupBasicAuth(restClient);
@@ -71,7 +71,7 @@ public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<
         setupCookieAuth(restClient);
 
         path = SoulTools.unNullify(path);
-        String domain = autoSettings.getSettingString(SERVER_DOMAIN_S) + path;
+        String domain = autoSettings.getSetting(SERVER_DOMAIN_S, String.class) + path;
 
         // add request parameters
         for (Pair<String, String> param : params) {
@@ -102,13 +102,13 @@ public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<
     }
 
     private void setupBasicAuth(RestClient restClient) {
-        Log.v(TAG, "Setting up basic auth: " + autoSettings.getSettingString(BASIC_AUTH_USER_S) + ":" + autoSettings.getSettingString(BASIC_AUTH_PASS_S));
-        restClient.setupBasicAuth(autoSettings.getSettingString(BASIC_AUTH_USER_S), autoSettings.getSettingString(BASIC_AUTH_PASS_S));
+        Log.v(TAG, "Setting up basic auth: " + autoSettings.getSetting(BASIC_AUTH_USER_S, String.class) + ":" + autoSettings.getSetting(BASIC_AUTH_PASS_S, String.class));
+        restClient.setupBasicAuth(autoSettings.getSetting(BASIC_AUTH_USER_S, String.class), autoSettings.getSetting(BASIC_AUTH_PASS_S, String.class));
     }
 
     private void setupLoginAuth(RestClient restClient) {
-        restClient.addParam("username", autoSettings.getSettingString(MY_AUTH_USER_S));
-        restClient.addParam("password", autoSettings.getSettingString(MY_AUTH_PASS_S));
+        restClient.addParam("username", autoSettings.getSetting(MY_AUTH_USER_S, String.class));
+        restClient.addParam("password", autoSettings.getSetting(MY_AUTH_PASS_S, String.class));
     }
 
     private void setupCookieAuth(RestClient restClient) {
