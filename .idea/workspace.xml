@@ -58,7 +58,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/verfluchter.png" afterPath="$PROJECT_DIR$/res/drawable/verfluchter.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/CommonViewActivity.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/CommonViewActivity.java" />
@@ -162,22 +161,13 @@
   </component>
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5141939">
+    <splitter split-orientation="horizontal" split-proportion="0.50031745">
       <split-first>
         <leaf>
-          <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="SettingsActivity.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="47" column="56" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="26" column="0" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.7330827">
+                <state line="75" column="99" selection-start="3124" selection-end="3124" vertical-scroll-proportion="1.7988394">
                   <folding />
                 </state>
               </provider>
@@ -186,7 +176,7 @@
           <file leaf-file-name="WorkTimeNotifierService.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="50" column="58" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0">
+                <state line="99" column="28" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -268,13 +258,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="VerfluchterActivity.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="VerfluchterActivity.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="502" column="71" selection-start="18683" selection-end="18683" vertical-scroll-proportion="7.2406716">
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state line="202" column="35" selection-start="7352" selection-end="7352" vertical-scroll-proportion="0.45009786">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -333,12 +321,12 @@
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/HourMin.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java" />
-        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/CommonViewActivity.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" />
       </list>
     </option>
   </component>
@@ -1020,20 +1008,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="56" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="58" selection-start="1770" selection-end="1770" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="96" column="26" selection-start="3149" selection-end="3149" vertical-scroll-proportion="0.0">
@@ -1074,13 +1048,6 @@
         <state line="23" column="63" selection-start="926" selection-end="926" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="42" selection-start="1786" selection-end="1786" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="79" column="50" selection-start="4308" selection-end="4308" vertical-scroll-proportion="0.0" />
@@ -1093,18 +1060,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java">
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="502" column="71" selection-start="18683" selection-end="18683" vertical-scroll-proportion="7.2406716">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="26" column="0" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.7330827">
+        <state line="40" column="42" selection-start="1786" selection-end="1786" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="28" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="99" selection-start="3124" selection-end="3124" vertical-scroll-proportion="1.7988394">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="202" column="35" selection-start="7352" selection-end="7352" vertical-scroll-proportion="0.45009786">
           <folding />
         </state>
       </provider>
