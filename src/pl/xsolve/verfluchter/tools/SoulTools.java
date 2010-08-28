@@ -171,6 +171,13 @@ public class SoulTools {
         }
     }
 
+    /**
+     * This is an idiotic method for avoiding null pointers if an got setting for example is null
+     * The properties will then return such Boolean bla = null; which renders getSetting() unusable in if statements
+     * Thats what for this method is...
+     * @param bool the "may be null" Boolean object
+     * @return false if the Boolean was null or false, true otherwise
+     */
     public static boolean isTrue(Boolean bool) {
         return bool == null ?  false : bool;
     }

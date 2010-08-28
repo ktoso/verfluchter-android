@@ -116,7 +116,7 @@ public class VerfluchterActivity extends CommonViewActivity {
         initListeners();
         Log.v(TAG, autoSettings.print());
 
-        if (getSetting(USE_REMINDER_SERVICE_B, Boolean.class)) {
+        if (isTrue(getSetting(USE_REMINDER_SERVICE_B, Boolean.class))) {
             stopService(new Intent(this, WorkTimeNotifierService.class));
             startService(new Intent(this, WorkTimeNotifierService.class));
             showToast("Uaktywniono serwis powiadamiania o przekroczonym czasie pracy.");
