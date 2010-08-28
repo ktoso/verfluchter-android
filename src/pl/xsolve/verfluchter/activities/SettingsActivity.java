@@ -28,6 +28,7 @@ public class SettingsActivity extends CommonViewActivity {
     EditText passwordEditText;
     CheckBox useWorkTimeNotifierCheckBox;
     CheckBox useRefresherCheckBox;
+    CheckBox useSoundCheckBox;
     TimePicker workingHourStartPicker;
     TimePicker workingHourEndPicker;
 
@@ -56,6 +57,9 @@ public class SettingsActivity extends CommonViewActivity {
 
         useRefresherCheckBox = (CheckBox) findViewById(R.id.refresher_service_check_checkbox);
         useRefresherCheckBox.setChecked(getSetting(USE_REFRESHER_SERVICE_B, Boolean.class));
+
+        useSoundCheckBox = (CheckBox) findViewById(R.id.use_sound_checkbox);
+        useSoundCheckBox.setChecked(getSetting(USE_SOUND_B, Boolean.class));
 
         workingHourStartPicker = (TimePicker) findViewById(R.id.working_hour_start_picker);
         workingHourStartPicker.setIs24HourView(true);
@@ -130,6 +134,9 @@ public class SettingsActivity extends CommonViewActivity {
             stopService(new Intent(this, RefreshService.class));
             showToast("Wyłączono serwis automatycznego odświeżania danych.");
         }
+
+        boolean useSound = useSoundCheckBox.isChecked();
+        autoSettings.setSetting(USE_SOUND_B, useSound);
 
         // yeah, we did some setup - it may be the initial one - no one cares as long as we did setup stuff ;-)
         autoSettings.setSetting(SETUP_DUE_B, false);

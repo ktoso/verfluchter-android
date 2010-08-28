@@ -140,6 +140,14 @@
                   style="@style/simpleBlackText"
                 />
 
+        <!--use sound with notifications-->
+        <CheckBox android:id="@+id/use_sound_checkbox"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/use_sound_checkbox_text"
+                  style="@style/simpleBlackText"
+                />
+
         <Button android:id="@+id/save_settings_button"
                 android:text="@string/save_settings_button_text"
                 android:layout_width="wrap_content"

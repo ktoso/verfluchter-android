@@ -121,8 +121,8 @@ public class VerfluchterActivity extends CommonViewActivity {
             startService(new Intent(this, WorkTimeNotifierService.class));
             showToast("Uaktywniono serwis powiadamiania o przekroczonym czasie pracy.");
 
-            stopService(new Intent(this, RefreshService.class));
-            startService(new Intent(this, RefreshService.class));
+//            stopService(new Intent(this, RefreshService.class));
+//            startService(new Intent(this, RefreshService.class));
         }
 
         new RefreshDataAsyncTask().execute();

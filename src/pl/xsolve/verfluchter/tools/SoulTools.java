@@ -75,7 +75,7 @@ public class SoulTools {
      */
     public static boolean itsWeekend(GregorianCalendar now) {
         int today = now.get(Calendar.DAY_OF_WEEK);
-        return !(today == Calendar.SUNDAY || today == Calendar.SATURDAY);
+        return today == Calendar.SUNDAY || today == Calendar.SATURDAY;
     }
 
     public static boolean workTimeIsOver(GregorianCalendar now) {

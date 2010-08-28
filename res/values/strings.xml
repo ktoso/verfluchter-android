@@ -66,4 +66,14 @@ http://www.github.com/ktoso\n
     <string name="am_i_working_no">Nie pracuję :-)</string>
 
     <string name="today">Dzisiaj</string>
+    <string name="use_sound_checkbox_text">Odtwórz dźwięk po aktualizacji notyfikacji</string>
+
+    <!-- notification messages for statuses -->
+    <string name="NOT_YET_WORKING">Jeszcze nie musisz pracować.</string>
+    <string name="YOU_SHOULD_START_WORKING">Powinieneś już zacząć pracę.</string>
+    <string name="WORKING">Pracujesz obecnie.</string>
+    <string name="YOU_SHOULD_STILL_BE_WORKING">Powinieneś nadal pracować.</string>
+    <string name="YOU_CAN_STOP_WORKING">Możesz już wyjść z pracy.</string>
+    <string name="NOT_WORKING">Nie pracujesz obecnie.</string>
+
 </resources>

@@ -17,26 +17,42 @@
 
 package pl.xsolve.verfluchter.services;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import pl.xsolve.verfluchter.R;
+import pl.xsolve.verfluchter.activities.VerfluchterActivity;
+import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.SoulTools;
+import pl.xsolve.verfluchter.tools.WorkStatus;
 
 import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
+import static pl.xsolve.verfluchter.tools.SoulTools.workTimeIsOver;
 
 /**
  * @author Konrad Ktoso Malawski
  */
 public class WorkTimeNotifierService extends Service {
 
+    // logger tag
     private static final String TAG = "WorkTimeNotifierService";
-    private static final long INTERVAL = 60000;
+
+    // time checking interval
+    private static final long INTERVAL = 10000;//5*60*1000;
 
     private Timer timer = new Timer();
     public static final String INTENT_HEY_STOP_WORKING = "HEY_STOP_WORKING";
+
+    NotificationManager notificationManager;
 
     /**
      * Called on service creation, will start the timer
@@ -44,6 +60,9 @@ public class WorkTimeNotifierService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
         start();
 
         Log.v(TAG, "Service started");
@@ -76,16 +95,52 @@ public class WorkTimeNotifierService extends Service {
     private void process() {
         Log.v(TAG, "WorkTimeNotifierService is processing.");
 
-        GregorianCalendar now = new GregorianCalendar ();
-        if(SoulTools.itsWeekend(now)){
+        GregorianCalendar now = new GregorianCalendar();
+        if (SoulTools.itsWeekend(now)) {
+            //todo remove this
+            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
             return;
         }
 
-        if (SoulTools.workTimeIsOver(now)) {
-            Intent intent = new Intent();
-            intent.setAction(INTENT_HEY_STOP_WORKING);
-            sendBroadcast(intent);
+        if (workTimeIsOver(now)) {
+            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
         }
+    }
+
+    private void notifyUser(WorkStatus workStatus) {
+        Log.d(TAG, "Displaying notification for working status: " + workStatus);
+        long when = System.currentTimeMillis();
+        int icon = R.drawable.icon;
+        CharSequence titleText;
+
+        Context context = getApplicationContext();
+        CharSequence contentTitle = "title";
+        CharSequence contentText = "message";
+
+        // setup strings etc
+        switch (workStatus) {
+            case YOU_CAN_STOP_WORKING:
+                titleText = workStatus.name();
+                contentText = getString(workStatus.contentTextRID);
+                break;
+            default:
+                return;
+        }
+
+        // build the notification/intent
+        Notification notification = new Notification(icon, titleText, when);
+        Intent notificationIntent = new Intent(this, VerfluchterActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+
+//        if(isTrue(autoSettings.getSetting(AutoSettings.USE_SOUND_B, Boolean.class))){
+//            notification.defaults |= Notification.DEFAULT_SOUND;
+            // or even better: notification.sound = Uri.withAppendedPath(Audio.Media.INTERNAL_CONTENT_URI, "6");
+            // http://developer.android.com/guide/topics/ui/notifiers/notifications.html
+//        }
+
+        // pass to the notification manager to display the notification
+        notificationManager.notify(workStatus.ordinal(), notification);
     }
 
     private void stop() {

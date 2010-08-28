@@ -41,21 +41,28 @@ public class Constants {
     public static final long MINUTE = 1000;
 
     public static final String DATE_FORMAT_YYYYMMDD = "yyyy-MM-dd";
-    
-    public static final String[] weekDays = new String[]{"Poniedziałek", "Wtorek", "Środa",
-            "Czwartek", "Piątek", "Sobota", "Niedziela"};
+
+    public static final String[] weekDays = new String[]{
+            "Poniedziałek",
+            "Wtorek",
+            "Środa",
+            "Czwartek",
+            "Piątek",
+            "Sobota",
+            "Niedziela"};
 
     public static class DEFAULT {
         public static final String SERVER_DOMAIN = "verfluchter.xsolve.pl";
         public static final String BASIC_AUTH_USER = "user";
         public static final String BASIC_AUTH_PASS = "";
-        public static final Boolean USE_REMINDER_SERVICE = false;
+        public static final Boolean USE_REMINDER_SERVICE = true;
         public static final Boolean USE_REFRESHER_SERVICE = false;
         public static final Integer WORKING_HOURS_START_HOUR = 8;
         public static final Integer WORKING_HOURS_START_MIN = 0;
         public static final Integer WORKING_HOURS_END_HOUR = 16;
         public static final Integer WORKING_HOURS_END_MIN = 0;
         public static final Boolean SETUP_DUE = true;
+        public static final Boolean USE_SOUND = false;
 
         private DEFAULT() {
         }

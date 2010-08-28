@@ -33,9 +33,7 @@
         <activity android:name=".activities.AboutViewActivity" android:label="About"/>
 
         <service android:name=".services.WorkTimeNotifierService"/>
-        <!--<service android:name=".activities.RefreshService"/>-->
-
-        <receiver android:name=".activities.HeyStopWorkingReceiver"/>
+        <service android:name=".services.RefreshService"/>
     </application>
 
     <uses-sdk android:minSdkVersion="6"/>

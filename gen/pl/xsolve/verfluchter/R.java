@@ -22,40 +22,46 @@ public final class R {
         public static final int verfluchter=0x7f020002;
     }
     public static final class id {
-        public static final int about_menu_item=0x7f090016;
+        public static final int about_menu_item=0x7f090015;
         public static final int about_text=0x7f090000;
-        public static final int basic_login_edittext=0x7f09000b;
-        public static final int basic_password_edittext=0x7f09000c;
-        public static final int continue_working_button=0x7f090002;
-        public static final int currently_working_text=0x7f090008;
-        public static final int domain_edittext=0x7f09000a;
-        public static final int hours_stats_textview=0x7f090009;
-        public static final int login_edittext=0x7f09000d;
-        public static final int main_menu_item=0x7f090014;
-        public static final int password_edittext=0x7f09000e;
-        public static final int refreshButton=0x7f090005;
-        public static final int refresher_service_check_checkbox=0x7f090012;
-        public static final int save_settings_button=0x7f090013;
-        public static final int settings_menu_item=0x7f090015;
-        public static final int startWork=0x7f090003;
-        public static final int stopWork=0x7f090004;
-        public static final int stop_working_button=0x7f090001;
-        public static final int timer_service_check_checkbox=0x7f090011;
-        public static final int workTimeToday=0x7f090007;
-        public static final int workTimeTodayLabel=0x7f090006;
-        public static final int working_hour_end_picker=0x7f090010;
-        public static final int working_hour_start_picker=0x7f09000f;
+        public static final int basic_login_edittext=0x7f090009;
+        public static final int basic_password_edittext=0x7f09000a;
+        public static final int currently_working_text=0x7f090006;
+        public static final int domain_edittext=0x7f090008;
+        public static final int hours_stats_textview=0x7f090007;
+        public static final int login_edittext=0x7f09000b;
+        public static final int main_menu_item=0x7f090013;
+        public static final int password_edittext=0x7f09000c;
+        public static final int refreshButton=0x7f090003;
+        public static final int refresher_service_check_checkbox=0x7f090010;
+        public static final int save_settings_button=0x7f090012;
+        public static final int settings_menu_item=0x7f090014;
+        public static final int startWork=0x7f090001;
+        public static final int stopWork=0x7f090002;
+        public static final int timer_service_check_checkbox=0x7f09000f;
+        public static final int use_sound_checkbox=0x7f090011;
+        public static final int workTimeToday=0x7f090005;
+        public static final int workTimeTodayLabel=0x7f090004;
+        public static final int working_hour_end_picker=0x7f09000e;
+        public static final int working_hour_start_picker=0x7f09000d;
     }
     public static final class layout {
         public static final int about=0x7f030000;
-        public static final int heystopworking=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int settings=0x7f030003;
+        public static final int main=0x7f030001;
+        public static final int settings=0x7f030002;
     }
     public static final class menu {
         public static final int menu=0x7f080000;
     }
     public static final class string {
+        public static final int NOT_WORKING=0x7f060032;
+        /**  notification messages for statuses 
+         */
+        public static final int NOT_YET_WORKING=0x7f06002d;
+        public static final int WORKING=0x7f06002f;
+        public static final int YOU_CAN_STOP_WORKING=0x7f060031;
+        public static final int YOU_SHOULD_START_WORKING=0x7f06002e;
+        public static final int YOU_SHOULD_STILL_BE_WORKING=0x7f060030;
         public static final int about_menu_label=0x7f060007;
         public static final int about_menu_shortcut=0x7f060008;
         public static final int about_text=0x7f060017;
@@ -96,6 +102,7 @@ public final class R {
         public static final int stop_working_button=0x7f06000a;
         public static final int timer_service_check_text=0x7f060011;
         public static final int today=0x7f06002b;
+        public static final int use_sound_checkbox_text=0x7f06002c;
         public static final int weeklyHoursLabel=0x7f06001e;
         public static final int workedLastTimeLabel=0x7f06001c;
         public static final int workedTodayLabel=0x7f06001a;

@@ -61,6 +61,7 @@ public class AutoSettings extends Activity {
     public static final String WORKING_HOURS_START_MIN_I = "WORKING_HOURS_START_MIN_I";
     public static final String WORKING_HOURS_END_HOUR_I = "WORKING_HOURS_END_HOUR_I";
     public static final String WORKING_HOURS_END_MIN_I = "WORKING_HOURS_END_MIN_I";
+    public static final String USE_SOUND_B = "USE_SOUND_B";
 
     private AutoSettings(SharedPreferences sharedPreferences) {
         //default values and automatic setting+loading setup
@@ -75,6 +76,7 @@ public class AutoSettings extends Activity {
         settings.put(WORKING_HOURS_START_MIN_I, Constants.DEFAULT.WORKING_HOURS_START_MIN);
         settings.put(WORKING_HOURS_END_HOUR_I, Constants.DEFAULT.WORKING_HOURS_END_HOUR);
         settings.put(WORKING_HOURS_END_MIN_I, Constants.DEFAULT.WORKING_HOURS_END_MIN);
+        settings.put(USE_SOUND_B, Constants.DEFAULT.USE_SOUND);
         settings.put(SETUP_DUE_B, Constants.DEFAULT.SETUP_DUE);
 
         this.preferences = sharedPreferences;
