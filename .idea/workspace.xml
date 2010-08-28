@@ -16,21 +16,17 @@
   <component name="ChangeListManager">
     <list default="true" id="01341843-5eb6-4b08-8eeb-76bf718f8577" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/HeyStopWorkingReceiver.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/pl/xsolve/verfluchter/R.java" afterPath="$PROJECT_DIR$/gen/pl/xsolve/verfluchter/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/heystopworking.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/heystopworking.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/settings.xml" afterPath="$PROJECT_DIR$/res/layout/settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" afterPath="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/projectCodeStyle.xml" />
     </list>
     <ignored path="$USER_HOME$/.griffon/" />
     <ignored path="$USER_HOME$/.grails/" />
@@ -50,59 +46,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" line="130" class="pl.xsolve.verfluchter.services.WorkTimeNotifierService" package="pl.xsolve.verfluchter.services">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" line="97" class="pl.xsolve.verfluchter.services.WorkTimeNotifierService" package="pl.xsolve.verfluchter.services">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" line="100" class="pl.xsolve.verfluchter.services.WorkTimeNotifierService" package="pl.xsolve.verfluchter.services">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" line="105" class="pl.xsolve.verfluchter.services.WorkTimeNotifierService" package="pl.xsolve.verfluchter.services">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" line="95" class="pl.xsolve.verfluchter.services.WorkTimeNotifierService" package="pl.xsolve.verfluchter.services">
+      <breakpoint url="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" line="133" class="pl.xsolve.verfluchter.services.WorkTimeNotifierService" package="pl.xsolve.verfluchter.services">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -198,7 +142,7 @@
           <file leaf-file-name="WorkTimeNotifierService.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="68" column="73" selection-start="2195" selection-end="2195" vertical-scroll-proportion="-0.38062283">
+                <state line="149" column="40" selection-start="4834" selection-end="4834" vertical-scroll-proportion="0.81751823">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -209,8 +153,30 @@
           <file leaf-file-name="SoulTools.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="77" column="69" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.0">
-                  <folding />
+                <state line="78" column="9" selection-start="2543" selection-end="2543" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="docComment;class#SoulTools#0" expanded="false" />
+                    <element signature="method#convertStreamToString#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#hasText#0;class#SoulTools#0" expanded="false" />
+                    <element signature="docComment;method#itsWeekend#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#itsWeekend#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#workTimeIsOver#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#workTimeHasntComeYet#0;class#SoulTools#0" expanded="false" />
+                    <element signature="docComment;method#convertTimeStringToIntPair#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#convertTimeStringToIntPair#0;class#SoulTools#0" expanded="false" />
+                    <element signature="docComment;method#convertIntPairToTimeString#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#convertIntPairToTimeString#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#unNullify#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#isResponseOK#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#getTodayDateString#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#getYesterdayString#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#prefixHttpsIfNeeded#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#removeHttpsPrefix#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#getDisplayDay#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#failIfResponseNotOk#0;class#SoulTools#0" expanded="false" />
+                    <element signature="docComment;method#isTrue#0;class#SoulTools#0" expanded="false" />
+                    <element signature="method#isTrue#0;class#SoulTools#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -236,7 +202,7 @@
           <file leaf-file-name="WorkStatus.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="35" column="40" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.0">
+                <state line="34" column="34" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -258,7 +224,7 @@
           <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="57" column="63" selection-start="2373" selection-end="2373" vertical-scroll-proportion="0.8626466">
+                <state line="57" column="63" selection-start="2373" selection-end="2373" vertical-scroll-proportion="0.6139535">
                   <folding />
                 </state>
               </provider>
@@ -319,12 +285,12 @@
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/AutoSettings.java" />
         <option value="$PROJECT_DIR$/res/layout/settings.xml" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/activities/VerfluchterActivity.java" />
         <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java" />
+        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java" />
+        <option value="$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java" />
       </list>
     </option>
   </component>
@@ -851,8 +817,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16514745" sideWeight="0.6736959" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3063263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15281501" sideWeight="0.6936737" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3063263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53496116" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JavaRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1050,13 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="40" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="37" selection-start="2235" selection-end="2235" vertical-scroll-proportion="0.0">
@@ -1066,7 +1025,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="63" selection-start="2373" selection-end="2373" vertical-scroll-proportion="0.8626466">
+        <state line="57" column="63" selection-start="2373" selection-end="2373" vertical-scroll-proportion="0.6139535">
           <folding />
         </state>
       </provider>
@@ -1087,14 +1046,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/SoulTools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="69" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.0">
+        <state line="78" column="9" selection-start="2543" selection-end="2543" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="docComment;class#SoulTools#0" expanded="false" />
+            <element signature="method#convertStreamToString#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#hasText#0;class#SoulTools#0" expanded="false" />
+            <element signature="docComment;method#itsWeekend#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#itsWeekend#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#workTimeIsOver#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#workTimeHasntComeYet#0;class#SoulTools#0" expanded="false" />
+            <element signature="docComment;method#convertTimeStringToIntPair#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#convertTimeStringToIntPair#0;class#SoulTools#0" expanded="false" />
+            <element signature="docComment;method#convertIntPairToTimeString#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#convertIntPairToTimeString#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#unNullify#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#isResponseOK#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#getTodayDateString#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#getYesterdayString#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#prefixHttpsIfNeeded#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#removeHttpsPrefix#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#getDisplayDay#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#failIfResponseNotOk#0;class#SoulTools#0" expanded="false" />
+            <element signature="docComment;method#isTrue#0;class#SoulTools#0" expanded="false" />
+            <element signature="method#isTrue#0;class#SoulTools#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/tools/WorkStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="34" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pl/xsolve/verfluchter/services/WorkTimeNotifierService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="73" selection-start="2195" selection-end="2195" vertical-scroll-proportion="-0.38062283">
+        <state line="149" column="40" selection-start="4834" selection-end="4834" vertical-scroll-proportion="0.81751823">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

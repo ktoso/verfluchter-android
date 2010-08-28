@@ -32,9 +32,11 @@ public enum WorkStatus {
     YOU_CAN_STOP_WORKING(R.string.YOU_CAN_STOP_WORKING),
     NOT_WORKING(R.string.NOT_WORKING);
 
-    public final int contentTextRID;
+    public final int contextTitle;
+    public final int contentText;
 
-    WorkStatus(int contentTextRID) {
-        this.contentTextRID = contentTextRID;
+    WorkStatus(int contentText) {
+        this.contextTitle = R.string.app_name;
+        this.contentText = contentText;
     }
 }

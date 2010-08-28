@@ -96,15 +96,18 @@ public class WorkTimeNotifierService extends Service {
         Log.v(TAG, "WorkTimeNotifierService is processing.");
 
         GregorianCalendar now = new GregorianCalendar();
-        if (SoulTools.itsWeekend(now)) {
-            //todo remove this
-            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
-            return;
-        }
+//        if (isWorking()) {
 
-        if (workTimeIsOver(now)) {
-            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
-        }
+            if (SoulTools.itsWeekend(now)) {
+                //todo remove this
+                notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
+                return;
+            }
+
+            if (workTimeIsOver(now)) {
+                notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
+            }
+//        }
     }
 
     private void notifyUser(WorkStatus workStatus) {
@@ -120,8 +123,8 @@ public class WorkTimeNotifierService extends Service {
         // setup strings etc
         switch (workStatus) {
             case YOU_CAN_STOP_WORKING:
-                titleText = workStatus.name();
-                contentText = getString(workStatus.contentTextRID);
+                titleText = getString(workStatus.contextTitle);
+                contentText = getString(workStatus.contentText);
                 break;
             default:
                 return;
@@ -135,8 +138,8 @@ public class WorkTimeNotifierService extends Service {
 
 //        if(isTrue(autoSettings.getSetting(AutoSettings.USE_SOUND_B, Boolean.class))){
 //            notification.defaults |= Notification.DEFAULT_SOUND;
-            // or even better: notification.sound = Uri.withAppendedPath(Audio.Media.INTERNAL_CONTENT_URI, "6");
-            // http://developer.android.com/guide/topics/ui/notifiers/notifications.html
+        // or even better: notification.sound = Uri.withAppendedPath(Audio.Media.INTERNAL_CONTENT_URI, "6");
+        // http://developer.android.com/guide/topics/ui/notifiers/notifications.html
 //        }
 
         // pass to the notification manager to display the notification
@@ -144,6 +147,8 @@ public class WorkTimeNotifierService extends Service {
     }
 
     private void stop() {
+        notificationManager.cancelAll();
+
         if (timer != null) {
             timer.cancel();
         }
