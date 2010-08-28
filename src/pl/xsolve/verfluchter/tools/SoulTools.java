@@ -92,9 +92,9 @@ public class SoulTools {
      * @param string
      * @return
      */
-    public static Pair<Integer, Integer> convertTimeStringToIntPair(String string) {
+    public static HourMin convertTimeStringToHourMin(String string) {
         String[] hourAndMin = string.split(":");
-        return new Pair<Integer, Integer>(Integer.valueOf(hourAndMin[0]), Integer.valueOf(hourAndMin[1]));
+        return new HourMin(Integer.valueOf(hourAndMin[0]), Integer.valueOf(hourAndMin[1]));
     }
 
     /**

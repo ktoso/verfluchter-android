@@ -45,7 +45,7 @@ public class HourMin {
         return this;
     }
 
-    public String print() {
+    public String pretty() {
         if (hour == 0) {
             return String.format("%dm", min);
         } else {

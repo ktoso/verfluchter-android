@@ -25,7 +25,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -115,6 +114,9 @@ public class VerfluchterActivity extends CommonViewActivity {
         if (updatedAt == null) {
             new RefreshDataAsyncTask().execute();
         }
+
+        //todo remove me
+        restartWorkTimeUpdater();
     }
 
     /**
@@ -209,7 +211,7 @@ public class VerfluchterActivity extends CommonViewActivity {
 
             if (!byloTygodniowo && !byloMiesiecznie) {
                 String[] strings = line.split(" ");
-                updateWorkedToday(SoulTools.convertTimeStringToIntPair(strings[1]));
+                updateWorkedToday(SoulTools.convertTimeStringToHourMin(strings[1]));
 
                 dziennie.add(new StringBuilder(strings[0].replaceAll(":", "")).append(" ")
                         .append(SoulTools.getDisplayDay(strings[0]))
@@ -267,15 +269,15 @@ public class VerfluchterActivity extends CommonViewActivity {
                     this.cancel();
                 }
 
-                Log.v(TAG, "");
-                updateWorkedTimeByOneMin();
+                Log.v(TAG, "Adding one minute to worked time...");
+                workedTime.addMin(1);
             }
         }, Constants.MINUTE, Constants.MINUTE);
     }
 
-    private void updateWorkedToday(Pair<Integer, Integer> hourAndMin) {
+    private void updateWorkedToday(HourMin hourAndMin) {
         workedTime = hourAndMin;
-        workTimeToday.setText(String.format("%dh %dm", hourAndMin.first, hourAndMin.second));
+        workTimeToday.setText(hourAndMin.pretty());
     }
 
     @Override
