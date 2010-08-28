@@ -28,6 +28,7 @@ import android.util.Log;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.activities.VerfluchterActivity;
 import pl.xsolve.verfluchter.tools.AutoSettings;
+import pl.xsolve.verfluchter.tools.Constants;
 import pl.xsolve.verfluchter.tools.SoulTools;
 import pl.xsolve.verfluchter.tools.WorkStatus;
 
@@ -47,7 +48,7 @@ public class WorkTimeNotifierService extends Service {
     private static final String TAG = "WorkTimeNotifierService";
 
     // time checking interval
-    private static final long INTERVAL = 10000;//5*60*1000;
+    private static final long INTERVAL = 10 * Constants.MINUTE;
 
     private Timer timer = new Timer();
     public static final String INTENT_HEY_STOP_WORKING = "HEY_STOP_WORKING";
@@ -89,7 +90,7 @@ public class WorkTimeNotifierService extends Service {
             public void run() {
                 process();
             }
-        }, 0, INTERVAL);
+        }, Constants.MINUTE, INTERVAL);
     }
 
     private void process() {
@@ -98,15 +99,15 @@ public class WorkTimeNotifierService extends Service {
         GregorianCalendar now = new GregorianCalendar();
 //        if (isWorking()) {
 
-            if (SoulTools.itsWeekend(now)) {
-                //todo remove this
-                notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
-                return;
-            }
+        if (SoulTools.itsWeekend(now)) {
+            //todo remove this
+            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
+            return;
+        }
 
-            if (workTimeIsOver(now)) {
-                notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
-            }
+        if (workTimeIsOver(now)) {
+            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
+        }
 //        }
     }
 
@@ -117,8 +118,8 @@ public class WorkTimeNotifierService extends Service {
         CharSequence titleText;
 
         Context context = getApplicationContext();
-        CharSequence contentTitle = "title";
-        CharSequence contentText = "message";
+        CharSequence contentTitle;
+        CharSequence contentText;
 
         // setup strings etc
         switch (workStatus) {

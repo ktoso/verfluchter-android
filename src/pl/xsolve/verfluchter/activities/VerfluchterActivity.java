@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -75,15 +76,27 @@ public class VerfluchterActivity extends CommonViewActivity {
     // am I currently working?
     boolean amICurrentlyWorking = false;
 
+    // Need handler for callbacks to the UI thread
+    // http://developer.android.com/guide/appendix/faq/commontasks.html#threading
+    final Handler handler = new Handler();
+
     // Loaded work hours data
     static Date updatedAt = null;
+    // cache for our last fetched response
+    private String plainTextResponse;
+
     List<String> dziennie = new LinkedList<String>();
     List<String> tygodniowo = new LinkedList<String>();
     List<String> miesiecznie = new LinkedList<String>();
 
+    static AutoSettings settingsForTasksReference;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        settingsForTasksReference = autoSettings;
+
         setContentView(R.layout.main);
 
         if (!SoulTools.hasText(getSetting(AutoSettings.BASIC_AUTH_PASS_S, String.class))) {
@@ -113,6 +126,8 @@ public class VerfluchterActivity extends CommonViewActivity {
 
         if (updatedAt == null) {
             new RefreshDataAsyncTask().execute();
+        } else if (plainTextResponse != null) {
+            updateWorkedHoursStats(plainTextResponse);
         }
 
         //todo remove me
@@ -123,7 +138,7 @@ public class VerfluchterActivity extends CommonViewActivity {
      * Initialize all button listeners
      */
     private void initListeners() {
-        //super important global intent filter registration!
+        // our global intent listener
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -140,6 +155,7 @@ public class VerfluchterActivity extends CommonViewActivity {
             }
         };
 
+        // important global intent filter registration!
         IntentFilter filter = new IntentFilter(WorkTimeNotifierService.INTENT_HEY_STOP_WORKING);
         filter.addAction(WorkTimeNotifierService.INTENT_HEY_STOP_WORKING);
         registerReceiver(broadcastReceiver, filter);
@@ -182,6 +198,12 @@ public class VerfluchterActivity extends CommonViewActivity {
 
     private void updateWorkedHoursStats(String plainTextResponse) {
         boolean byloDziennie = false, byloTygodniowo = false, byloMiesiecznie = false;
+
+        // cache the response
+        this.plainTextResponse = plainTextResponse;
+
+        // so we dont get into each others way
+        workTimeUpdaterTimer.cancel();
 
         dziennie.clear();
         tygodniowo.clear();
@@ -238,24 +260,21 @@ public class VerfluchterActivity extends CommonViewActivity {
         String newestEntry = dziennie.get(0);
         if (newestEntry.contains(SoulTools.getTodayDateString())) {
             workTimeTodayLabel.setText(R.string.workedTodayLabel);
+            restartWorkTimeUpdater();
         } else if (newestEntry.contains(SoulTools.getYesterdayString())) {
             workTimeTodayLabel.setText(R.string.workedYesterdayLabel);
+            restartWorkTimeUpdater();
         } else {
             workTimeTodayLabel.setText(R.string.workedLastTimeLabel);
+            restartWorkTimeUpdater();
         }
 
-        // setup and restart the timer to add minutes to the worked time without fetching any resources
-        // yeah, if someone stops the timer on the website - we'll have wrong data. But thats why we have the refresh,
-        // or better cal it "resync" button. And also... why would anyone use the website if you have verfluchter-android? :-)
-        restartWorkTimeUpdater();
-
         // update the long stats view
+        // todo make this better
         hoursStatsTextView.setText(
                 getString(R.string.dailyHoursLabel) + "\n" + Joiner.on("\n").join(dziennie) + "\n\n"
                         + getString(R.string.weeklyHoursLabel) + "\n" + Joiner.on("\n").join(tygodniowo) + "\n\n"
-                        + getString(R.string.monthlyHoursLabel) + "\n" + Joiner.on("\n").join(miesiecznie));//todo make this better
-
-
+                        + getString(R.string.monthlyHoursLabel) + "\n" + Joiner.on("\n").join(miesiecznie));
     }
 
     private void restartWorkTimeUpdater() {
@@ -265,17 +284,18 @@ public class VerfluchterActivity extends CommonViewActivity {
         workTimeUpdaterTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                // stop adding time if you've stopped working
                 if (!amICurrentlyWorking) {
                     this.cancel();
+                    return;
                 }
 
-                Log.v(TAG, "Adding one minute to worked time...");
-                workedTime.addMin(1);
+                handler.post(addOneMinuteWorkedTimeRunnable);
             }
         }, Constants.MINUTE, Constants.MINUTE);
     }
 
-    private void updateWorkedToday(HourMin hourAndMin) {
+    private synchronized void updateWorkedToday(HourMin hourAndMin) {
         workedTime = hourAndMin;
         workTimeToday.setText(hourAndMin.pretty());
     }
@@ -283,6 +303,7 @@ public class VerfluchterActivity extends CommonViewActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        workTimeUpdaterTimer.cancel();
     }
 
     //--------------------------- Async Tasks -------------------------------------------------------------------------
@@ -303,7 +324,7 @@ public class VerfluchterActivity extends CommonViewActivity {
     public class RefreshDataAsyncTask extends RestAsyncTask<Void, Integer, RestResponse> {
 
         public RefreshDataAsyncTask() {
-            super(VerfluchterActivity.autoSettings);
+            super(VerfluchterActivity.settingsForTasksReference);
         }
 
         ProgressDialog dialog;
@@ -314,7 +335,7 @@ public class VerfluchterActivity extends CommonViewActivity {
          */
         @Override
         protected void onPreExecute() {
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Fetching external resource. Please wait...", true);
+            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa aktualizowanie danych. Zaczekaj proszę momencik...", true);
         }
 
         @Override
@@ -370,7 +391,7 @@ public class VerfluchterActivity extends CommonViewActivity {
                 return;
             }
 
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Parsing response. Please wait...", true);
+            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa przetważanie odpowiedzi serwera. Jeszcze tylko chwilkę.", true);
             String responseMessage = restResponse.getResponse();
 
             setAmICurrentlyWorking(responseMessage);
@@ -398,14 +419,14 @@ public class VerfluchterActivity extends CommonViewActivity {
         boolean changeWorkingStatusTo;
 
         public ChangeWorkingStatusAsyncTask(boolean changeWorkingStatusTo) {
-            super(VerfluchterActivity.autoSettings);
+            super(VerfluchterActivity.settingsForTasksReference);
             this.changeWorkingStatusTo = changeWorkingStatusTo;
         }
 
         @Override
         protected void onPreExecute() {
-            String doingWhat = changeWorkingStatusTo ? "Starting" : "Stopping";
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", doingWhat + " work timer. \nPlease wait...", true);
+            String doingWhat = changeWorkingStatusTo ? "Trwa włączanie" : "Trwa zatrzymywanie";
+            dialog = ProgressDialog.show(VerfluchterActivity.this, "", doingWhat + " licznika czasu. Zaczekaj proszę chwilkę..", true);
         }
 
         @Override
@@ -457,7 +478,7 @@ public class VerfluchterActivity extends CommonViewActivity {
                 return;
             }
 
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Parsing response. \nPlease wait...", true);
+            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa przetwarzanie odpowiedi serwera. Jeszcze tylko momencik.", true);
             String responseMessage = restResponse.getResponse();
 
             setAmICurrentlyWorking(responseMessage);
@@ -470,4 +491,17 @@ public class VerfluchterActivity extends CommonViewActivity {
             dialog.dismiss();
         }
     }
+
+    /**
+     * This Runnable will be launched using handler.post()
+     * which returns us into the UI Thread and allows us to update the UI right away,
+     * even thought the initial call came from inside of an Timer instance.
+     */
+    final Runnable addOneMinuteWorkedTimeRunnable = new Runnable() {
+        @Override
+        public void run() {
+            // if called using an handler  => back in the UI Thread :-)
+            updateWorkedToday(workedTime.addMin(1));
+        }
+    };
 }

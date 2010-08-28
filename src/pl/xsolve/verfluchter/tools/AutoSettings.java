@@ -36,8 +36,7 @@ public class AutoSettings extends Activity {
     // Logger tag
     private static final String TAG = "AutoSettings";
 
-    public static final String PREFS_NAME = "settings";
-    SharedPreferences preferences;
+    protected SharedPreferences preferences;
 
     protected Map<String, Object> settings = new HashMap<String, Object>();
 
@@ -62,7 +61,7 @@ public class AutoSettings extends Activity {
     public static final String WORKING_HOURS_END_MIN_I = "WORKING_HOURS_END_MIN_I";
     public static final String USE_SOUND_B = "USE_SOUND_B";
 
-    private AutoSettings(SharedPreferences sharedPreferences) {
+    private AutoSettings(SharedPreferences preferences) {
         //default values and automatic setting+loading setup
         settings.put(SERVER_DOMAIN_S, Constants.DEFAULT.SERVER_DOMAIN);
         settings.put(MY_AUTH_USER_S, null);
@@ -77,14 +76,14 @@ public class AutoSettings extends Activity {
         settings.put(WORKING_HOURS_END_MIN_I, Constants.DEFAULT.WORKING_HOURS_END_MIN);
         settings.put(USE_SOUND_B, Constants.DEFAULT.USE_SOUND);
 
-        this.preferences = sharedPreferences;
+        this.preferences = preferences;
 
         restoreSettings();
     }
 
-    public static AutoSettings getInstance(SharedPreferences sharedPreferences) {
+    public static AutoSettings getInstance(SharedPreferences preferences) {
         if (myInstance == null) {
-            myInstance = new AutoSettings(sharedPreferences);
+            myInstance = new AutoSettings(preferences);
         }
         return myInstance;
     }
@@ -93,7 +92,6 @@ public class AutoSettings extends Activity {
      * Restore preferences and load them into our variables
      */
     public void restoreSettings() {
-//        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, 0);
         for (String key : settings.keySet()) {
             Object value = restoreFromPreferences(preferences, key);
 //            if (key.contains("PASS") && value != null) {
@@ -116,7 +114,6 @@ public class AutoSettings extends Activity {
         Log.d(TAG, "Persisting autoSettings: " + settings);
 
         // We need an Editor object to make preference changes.
-//        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
         for (String key : settings.keySet()) {
             Object value = getSetting(key, Object.class);
