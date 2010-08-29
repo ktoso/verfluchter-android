@@ -15,19 +15,18 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pl.xsolve.verfluchter.activities;
-
-import android.content.DialogInterface;
-import android.os.Bundle;
-import pl.xsolve.verfluchter.R;
+package pl.xsolve.verfluchter.tasks.general;
 
 /**
+ * Used by classes that allow some progress to be shown.
+ *
  * @author Konrad Ktoso Malawski
  */
-public class AboutViewActivity extends CommonViewActivity {
-    @Override
-    public void onCreate(Bundle state) {
-        super.onCreate(state);
-        setContentView(R.layout.about);
-    }
+public interface CanDisplayProgress {
+
+    void showProgressDialog(final String title, final String message, final boolean indeterminate);
+
+    void showProgressDialog(final String title, final String message, final boolean indeterminate, final boolean cancelable, final android.content.DialogInterface.OnCancelListener cancelListener);
+
+    void hideProgressDialog();
 }

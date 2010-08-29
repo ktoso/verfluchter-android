@@ -26,6 +26,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
+import pl.xsolve.verfluchter.tasks.general.CanDisplayProgress;
 import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.tools.Constants;
@@ -38,7 +40,7 @@ import pl.xsolve.verfluchter.tools.Constants;
 public abstract class CommonViewActivity extends Activity {
 
     // logger tag
-    static final String TAG = "CommonViewActivity";
+    private final static String TAG = CommonViewActivity.class.getSimpleName();
 
     protected AutoSettings autoSettings;
 
@@ -123,5 +125,5 @@ public abstract class CommonViewActivity extends Activity {
 
     public <T> void setSetting(String key, T value) {
         autoSettings.setSetting(key, value);
-    }
+    }    
 }

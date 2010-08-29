@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.Constants;
 
@@ -30,11 +31,16 @@ import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
  * @author Konrad Ktoso Malawski
  */
 public class BootReceiver extends BroadcastReceiver {
+
+    // logger tag
+    private final static String TAG = BootReceiver.class.getSimpleName();
+
     @Override
     public void onReceive(Context context, Intent intent) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.PREFS, 0);
         boolean useWorkTimeNotifier = preferences.getBoolean(AutoSettings.USE_REMINDER_SERVICE_B, false);
 
+        Log.v(TAG, "Starting WorkTimeNotifierService on boot...");
         if (useWorkTimeNotifier) {
             Intent serviceIntent = new Intent(WorkTimeNotifierService.class.getName());
             context.startService(serviceIntent);

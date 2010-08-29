@@ -27,7 +27,6 @@ import android.os.IBinder;
 import android.util.Log;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.activities.VerfluchterActivity;
-import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.Constants;
 import pl.xsolve.verfluchter.tools.SoulTools;
 import pl.xsolve.verfluchter.tools.WorkStatus;
@@ -36,7 +35,6 @@ import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 import static pl.xsolve.verfluchter.tools.SoulTools.workTimeIsOver;
 
 /**
@@ -45,7 +43,7 @@ import static pl.xsolve.verfluchter.tools.SoulTools.workTimeIsOver;
 public class WorkTimeNotifierService extends Service {
 
     // logger tag
-    private static final String TAG = "WorkTimeNotifierService";
+    private static final String TAG = WorkTimeNotifierService.class.getSimpleName();
 
     // time checking interval
     private static final long INTERVAL = 10 * Constants.MINUTE;
@@ -140,8 +138,8 @@ public class WorkTimeNotifierService extends Service {
 
 //        if(isTrue(autoSettings.getSetting(AutoSettings.USE_SOUND_B, Boolean.class))){
 //            notification.defaults |= Notification.DEFAULT_SOUND;
-        // or even better: notification.sound = Uri.withAppendedPath(Audio.Media.INTERNAL_CONTENT_URI, "6");
-        // http://developer.android.com/guide/topics/ui/notifiers/notifications.html
+//        or even better: notification.sound = Uri.withAppendedPath(Audio.Media.INTERNAL_CONTENT_URI, "6");
+//        http://developer.android.com/guide/topics/ui/notifiers/notifications.html
 //        }
 
         // pass to the notification manager to display the notification

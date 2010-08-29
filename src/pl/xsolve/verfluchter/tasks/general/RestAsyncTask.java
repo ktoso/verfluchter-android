@@ -15,12 +15,15 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pl.xsolve.verfluchter.rest;
+package pl.xsolve.verfluchter.tasks.general;
 
 import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
 import org.apache.http.cookie.Cookie;
+import pl.xsolve.verfluchter.rest.RequestMethod;
+import pl.xsolve.verfluchter.rest.RestClient;
+import pl.xsolve.verfluchter.rest.RestResponse;
 import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
@@ -34,13 +37,20 @@ import static pl.xsolve.verfluchter.tools.AutoSettings.*;
 /**
  * An common class for all AsyncTasks that need to use our rest client
  *
+ * Some more info about the "extends <_, _, _>":
+ * The 3 Type params mean as follows:
+ * 1. Params, the type of the parameters sent to the task upon execution.
+ * 2. Progress, the type of the progress units published during the background computation.
+ * 3. Result, the type of the result of the background computation.
+ *
  * @author Konrad Ktoso Malawski
  */
 public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
 
-    protected RestClient restClient = new RestClient();
+    // logger tag
+    private final static String TAG = RestAsyncTask.class.getSimpleName();
 
-    protected String TAG = "RestAsyncTask";
+    protected RestClient restClient = new RestClient();
 
     protected AutoSettings autoSettings;
 
@@ -126,12 +136,17 @@ public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<
      */
     protected int enqueueErrorMessage(String errorMessage) {
         errors.add(errorMessage);
+
         return errors.size();
     }
 
+    /**
+     * Checks if the task encountered any errors (that were added using the @see enqueueErrorMessage method)
+     * @return
+     */
     protected boolean hadErrors() {
+
         return errors.size() > 0;
     }
-
 
 }

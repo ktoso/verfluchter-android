@@ -29,9 +29,11 @@ import java.util.TimerTask;
  * @author Konrad Ktoso Malawski
  */
 public class RefreshService extends Service {
-    public static final String INTENT_FRESH_DATA = "INTENT_FRESH_DATA";
 
-    private static final String TAG = "RefreshService";
+    // logger tag
+    private static final String TAG = RefreshService.class.getSimpleName();
+
+    public static final String INTENT_FRESH_DATA = "INTENT_FRESH_DATA";
     private static final long INTERVAL = 10 * 60 * 100;
 
     private Timer timer = new Timer();

@@ -15,19 +15,20 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pl.xsolve.verfluchter.activities;
-
-import android.content.DialogInterface;
-import android.os.Bundle;
-import pl.xsolve.verfluchter.R;
+package pl.xsolve.verfluchter.tasks.general;
 
 /**
+ * Used by classes that allow to display error messages
+ *
  * @author Konrad Ktoso Malawski
  */
-public class AboutViewActivity extends CommonViewActivity {
-    @Override
-    public void onCreate(Bundle state) {
-        super.onCreate(state);
-        setContentView(R.layout.about);
-    }
+public interface CanDisplayErrorMessages {
+
+    /**
+     * Display some error message.
+     * The message will disappear after some time or some kind of user interaction.
+     *
+     * @param error the error message to be displayed
+     */
+    void showErrorMessage(final String error);
 }

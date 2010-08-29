@@ -64,7 +64,8 @@ import java.util.List;
  */
 public class RestClient {
 
-    private static final String TAG = "RestClient";
+    // logger tag
+    private final static String TAG = RestClient.class.getSimpleName();
 
     // headers and params to be passed in request
     private List<NameValuePair> paramz = new ArrayList<NameValuePair>();

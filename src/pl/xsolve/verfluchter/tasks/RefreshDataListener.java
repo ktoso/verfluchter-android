@@ -15,19 +15,16 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pl.xsolve.verfluchter.activities;
+package pl.xsolve.verfluchter.tasks;
 
-import android.content.DialogInterface;
-import android.os.Bundle;
-import pl.xsolve.verfluchter.R;
+import pl.xsolve.verfluchter.rest.RestResponse;
+import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
+import pl.xsolve.verfluchter.tasks.general.CanDisplayProgress;
 
 /**
  * @author Konrad Ktoso Malawski
  */
-public class AboutViewActivity extends CommonViewActivity {
-    @Override
-    public void onCreate(Bundle state) {
-        super.onCreate(state);
-        setContentView(R.layout.about);
-    }
+public interface RefreshDataListener extends CanDisplayProgress, CanDisplayErrorMessages {
+
+    void afterRefreshData(final RestResponse restResponse);
 }

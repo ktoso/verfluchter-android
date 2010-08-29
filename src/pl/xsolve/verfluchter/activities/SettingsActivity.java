@@ -21,6 +21,8 @@ import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
  */
 public class SettingsActivity extends CommonViewActivity {
 
+    private final static String TAG = SettingsActivity.class.getSimpleName();
+
     Button saveButton;
     EditText domainEditText;
     EditText basicLoginEditText;

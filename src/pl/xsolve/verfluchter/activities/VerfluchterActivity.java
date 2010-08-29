@@ -18,10 +18,7 @@
 package pl.xsolve.verfluchter.activities;
 
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.*;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -30,19 +27,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.google.common.base.Joiner;
 import org.apache.http.cookie.Cookie;
 import pl.xsolve.verfluchter.R;
-import pl.xsolve.verfluchter.rest.RequestMethod;
-import pl.xsolve.verfluchter.rest.RestAsyncTask;
+import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusAsyncTask;
+import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusListener;
+import pl.xsolve.verfluchter.tasks.RefreshDataListener;
 import pl.xsolve.verfluchter.rest.RestResponse;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
+import pl.xsolve.verfluchter.tasks.RefreshDataAsyncTask;
 import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.Constants;
 import pl.xsolve.verfluchter.tools.HourMin;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
-import java.io.IOException;
 import java.util.*;
 
 import static pl.xsolve.verfluchter.tools.AutoSettings.*;
@@ -52,7 +51,11 @@ import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 /**
  * @author Konrad Ktoso Malawski
  */
-public class VerfluchterActivity extends CommonViewActivity {
+public class VerfluchterActivity extends CommonViewActivity
+        implements RefreshDataListener, ChangeWorkingStatusListener {
+
+    // logger tag
+    private final static String TAG = VerfluchterActivity.class.getSimpleName();
 
     // UI components
     Button startWorkButton;
@@ -62,6 +65,9 @@ public class VerfluchterActivity extends CommonViewActivity {
     TextView workTimeTodayLabel;
     TextView workTimeToday;
     TextView currentlyWorkingText;
+
+    // other UI components (dialogs etc)
+    ProgressDialog progressDialog;
 
     private Timer workTimeUpdaterTimer = new Timer();
 
@@ -121,13 +127,10 @@ public class VerfluchterActivity extends CommonViewActivity {
             stopService(new Intent(this, WorkTimeNotifierService.class));
             startService(new Intent(this, WorkTimeNotifierService.class));
             showToast("Uaktywniono serwis powiadamiania o przekroczonym czasie pracy.");
-
-//            stopService(new Intent(this, RefreshService.class));
-//            startService(new Intent(this, RefreshService.class));
         }
 
         if (updatedAt == null) {
-            new RefreshDataAsyncTask().execute();
+            new RefreshDataAsyncTask(this).execute();
         } else if (plainTextResponse != null) {
             updateWorkedHoursStats(plainTextResponse);
         }
@@ -166,19 +169,19 @@ public class VerfluchterActivity extends CommonViewActivity {
         refreshButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                new RefreshDataAsyncTask().execute();
+                new RefreshDataAsyncTask(VerfluchterActivity.this).execute();
             }
         });
 
         startWorkButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                new ChangeWorkingStatusAsyncTask(true).execute();
+                new ChangeWorkingStatusAsyncTask(VerfluchterActivity.this, true).execute();
             }
         });
 
         stopWorkButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                new ChangeWorkingStatusAsyncTask(false).execute();
+                new ChangeWorkingStatusAsyncTask(VerfluchterActivity.this, false).execute();
             }
         });
     }
@@ -308,190 +311,51 @@ public class VerfluchterActivity extends CommonViewActivity {
         workTimeUpdaterTimer.cancel();
     }
 
-    //--------------------------- Async Tasks -------------------------------------------------------------------------
-
-    /**
-     * This is an AsyncTask to update our working hour data.
-     * It will display an ProgressDialog and fetch the external resources.
-     * <p/>
-     * Info about the extends <_, _, _>:
-     * The 3 Type Params mean as follows:
-     * 1. Params, the type of the parameters sent to the task upon execution.
-     * 2. Progress, the type of the progress units published during the background computation.
-     * 3. Result, the type of the result of the background computation.
-     *
-     * @author Konrad Ktoso Malawski
-     * @see <a href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask JavaDoc</a>
-     */
-    public class RefreshDataAsyncTask extends RestAsyncTask<Void, Integer, RestResponse> {
-
-        public RefreshDataAsyncTask() {
-            super(VerfluchterActivity.settingsForTasksReference);
-        }
-
-        ProgressDialog dialog;
-
-        /**
-         * Invoked on the UI thread immediately after the task is executed.
-         * This step is normally used to setup the task, for instance by showing a progress bar in the user interface.
-         */
-        @Override
-        protected void onPreExecute() {
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa aktualizowanie danych. Zaczekaj proszę momencik...", true);
-        }
-
-        @Override
-        protected RestResponse doInBackground(Void... nothing) {
-            if (verfluchtesCookie == null) {
-                acquireLoginCookie();
-            }
-
-            return callRefreshData();
-        }
-
-        public RestResponse callRefreshData() {
-            RestResponse response = null;
-            try {
-                response = callWebService("", RequestMethod.GET);
-
-//                responseMessage = response.getResponse();
-                Log.d(TAG, "Got response");//: " + responseMessage);
-
-                SoulTools.failIfResponseNotOk(response);
-                return response;
-            } catch (IOException e) {
-                String message = response == null ? "Failed while getting the servers response."
-                        : "Failed while getting response, error code: " + response.getResponseCode() + ", message: " + response.getErrorMessage();
-                Log.e(TAG, message);
-                enqueueErrorMessage(message);
-            } catch (NullPointerException e) {
-                String message = "Failed while getting the servers response.";
-                Log.e(TAG, message);
-                enqueueErrorMessage(message);
-            } catch (Exception e) {
-                String message = "Other exception Response was: " + response;
-                Log.e(TAG, message);
-                enqueueErrorMessage(message);
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        /**
-         * This is called in the UI Thread
-         *
-         * @param restResponse the result of this task
-         */
-        @Override
-        protected void onPostExecute(RestResponse restResponse) {
-            dialog.dismiss();
-
-            if (hadErrors()) {
-                for (String error : errors) {
-                    showToast(error);
-                }
-                return;
-            }
-
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa przetważanie odpowiedzi serwera. Jeszcze tylko chwilkę.", true);
-            String responseMessage = restResponse.getResponse();
-
-            setAmICurrentlyWorking(responseMessage);
-            String plainTextResponse = Html.fromHtml(responseMessage).toString();
-
-            if (plainTextResponse != null) {
-                updateWorkedHoursStats(plainTextResponse);
-            }
-
-            dialog.dismiss();
-        }
+    public static AutoSettings getAutoSettings() {
+        return settingsForTasksReference;
     }
 
-    /**
-     * This is an AsyncTask to change the timer's status from working to not working and vice versa.
-     * It will display an ProgressDialog and fetch the external resources.
-     *
-     * @author Konrad Ktoso Malawski
-     * @see <a href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask JavaDoc</a>
-     */
-    private class ChangeWorkingStatusAsyncTask extends RestAsyncTask<Void, Integer, RestResponse> {
+//--------------------------- Async Task handling ---------------------------------------------
 
-        ProgressDialog dialog;
+    @Override
+    public void afterRefreshData(final RestResponse restResponse) {
+        handler.post(new Runnable() {
+            public void run() {
+                progressDialog = ProgressDialog.show(VerfluchterActivity.this,
+                        "",
+                        "Trwa przetważanie odpowiedzi serwera. Jeszcze tylko chwilkę.",
+                        true);
+                String responseMessage = restResponse.getResponse();
 
-        boolean changeWorkingStatusTo;
+                setAmICurrentlyWorking(responseMessage);
+                String plainTextResponse = Html.fromHtml(responseMessage).toString();
 
-        public ChangeWorkingStatusAsyncTask(boolean changeWorkingStatusTo) {
-            super(VerfluchterActivity.settingsForTasksReference);
-            this.changeWorkingStatusTo = changeWorkingStatusTo;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            String doingWhat = changeWorkingStatusTo ? "Trwa włączanie" : "Trwa zatrzymywanie";
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", doingWhat + " licznika czasu. Zaczekaj proszę chwilkę..", true);
-        }
-
-        @Override
-        protected RestResponse doInBackground(Void... nothing) {
-            if (verfluchtesCookie == null) {
-                acquireLoginCookie();
-            }
-
-            return callChangeWorkingStatus(changeWorkingStatusTo);
-        }
-
-        private RestResponse callChangeWorkingStatus(boolean changeWorkingStatusTo) {
-            RestResponse response = null;
-            try {
-                String action = changeWorkingStatusTo ? "begin" : "end";
-                String callPath = "/timetable/" + action;
-                response = callWebService(callPath, RequestMethod.POST);
-
-                SoulTools.failIfResponseNotOk(response);
-                Log.d(TAG, "Got response");
-
-                return response;
-            } catch (IOException e) {
-                String message = response == null ? "Failed while getting the servers response."
-                        : "Failed while getting response, error code: " + response.getResponseCode() + ", message: " + response.getErrorMessage();
-                Log.e(TAG, message);
-                enqueueErrorMessage(message);
-            } catch (NullPointerException e) {
-                String message = "Failed while getting the servers response.";
-                Log.e(TAG, message);
-                enqueueErrorMessage(message);
-            } catch (Exception e) {
-                String message = "Other exception Response was: " + response;
-                Log.e(TAG, message);
-                enqueueErrorMessage(message);
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(RestResponse restResponse) {
-            dialog.dismiss();
-
-            if (hadErrors()) {
-                for (String error : errors) {
-                    showToast(error);
+                if (plainTextResponse != null) {
+                    updateWorkedHoursStats(plainTextResponse);
                 }
-                return;
+
+                progressDialog.dismiss();
             }
+        });
+    }
 
-            dialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa przetwarzanie odpowiedi serwera. Jeszcze tylko momencik.", true);
-            String responseMessage = restResponse.getResponse();
+    @Override
+    public void afterChangeWorkingStatus(final RestResponse restResponse) {
+        handler.post(new Runnable() {
+            public void run() {
+                progressDialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa przetwarzanie odpowiedi serwera. Jeszcze tylko momencik.", true);
+                String responseMessage = restResponse.getResponse();
 
-            setAmICurrentlyWorking(responseMessage);
-            String plainTextResponse = Html.fromHtml(responseMessage).toString();
+                setAmICurrentlyWorking(responseMessage);
+                String plainTextResponse = Html.fromHtml(responseMessage).toString();
 
-            if (plainTextResponse != null) {
-                updateWorkedHoursStats(plainTextResponse);
+                if (plainTextResponse != null) {
+                    updateWorkedHoursStats(plainTextResponse);
+                }
+
+                progressDialog.dismiss();
             }
-
-            dialog.dismiss();
-        }
+        });
     }
 
     /**
@@ -506,4 +370,46 @@ public class VerfluchterActivity extends CommonViewActivity {
             updateWorkedToday(workedTime.addMin(1));
         }
     };
+
+//---------------------------- Interface implementations ---------------------------------------
+
+    @Override
+    public void showProgressDialog(final String title, final String message, final boolean indeterminate) {
+        handler.post(new Runnable() {
+            public void run() {
+                progressDialog = ProgressDialog.show(VerfluchterActivity.this, title, message, indeterminate);
+            }
+        });
+    }
+
+    @Override
+    public void showProgressDialog(final String title, final String message, final boolean indeterminate, final boolean cancelable, final DialogInterface.OnCancelListener cancelListener) {
+        handler.post(new Runnable() {
+            public void run() {
+                progressDialog = ProgressDialog.show(VerfluchterActivity.this, title, message, indeterminate, cancelable, cancelListener);
+            }
+        });
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        handler.post(new Runnable() {
+            public void run() {
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public void showErrorMessage(final String error) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                showToast(error, Toast.LENGTH_LONG);
+            }
+        });
+    }
 }

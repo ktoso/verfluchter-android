@@ -32,13 +32,16 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * A simple string helper class
+ * A simple toolbox/helper class
  *
  * @author Konrad Ktoso Malawski
  */
 public class SoulTools {
+    
+    // logger tag
+    private static final String TAG = SoulTools.class.getSimpleName();
+
     static SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT_YYYYMMDD);
-    private static final String TAG = "SoulTools";
 
     public static String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is), 8);
@@ -163,7 +166,7 @@ public class SoulTools {
     }
 
     @SuppressWarnings({"ConstantConditions"})
-    public static void failIfResponseNotOk(RestResponse response) throws Exception {
+    public static void throwExceptionIfResponseNotOk(RestResponse response) throws RestResponseException {
         if (!SoulTools.isResponseOK(response)) {
             Log.d(TAG, "But the response code is not 200...");
             Log.v(TAG, response == null ? "Response was null." : response.getResponse());

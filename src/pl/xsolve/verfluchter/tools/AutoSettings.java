@@ -30,11 +30,11 @@ import java.util.Map;
  */
 public class AutoSettings extends Activity {
 
+    // Logger tag
+    private static final String TAG = AutoSettings.class.getSimpleName();
+
     // My instance, "the one to rule them all"
     private static AutoSettings myInstance;
-
-    // Logger tag
-    private static final String TAG = "AutoSettings";
 
     protected SharedPreferences preferences;
 
@@ -163,6 +163,6 @@ public class AutoSettings extends Activity {
     public String print() {
         StringBuilder sb = new StringBuilder("-- AutoSettings (" + this + ") --\n");
         sb.append(settings).append("\n");
-        return sb.append("------------------\n").toString();
+        return sb.append("------------------").toString();
     }
 }
