@@ -119,10 +119,10 @@ public class SettingsActivity extends CommonViewActivity {
         if (useWorkTimeNotifier) {
             stopService(new Intent(this, WorkTimeNotifierService.class));
             startService(new Intent(this, WorkTimeNotifierService.class));
-            showToast("Uaktywniono serwis powiadamiania o przekroczonym czasie pracy.");
+            showToast(getResources().getString(R.string.activated_work_time_check_service));
         } else {
             stopService(new Intent(this, WorkTimeNotifierService.class));
-            showToast("Wyłączono serwis powiadamiania o przekroczonym czasie pracy.");
+            showToast(getResources().getString(R.string.deactivated_work_time_check_service));
         }
 
         boolean useRefresher = useRefresherCheckBox.isChecked();

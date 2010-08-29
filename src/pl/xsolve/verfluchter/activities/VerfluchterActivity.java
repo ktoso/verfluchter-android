@@ -46,6 +46,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.SoulTools.hasText;
 import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 
 /**
@@ -99,7 +100,8 @@ public class VerfluchterActivity extends CommonViewActivity {
 
         setContentView(R.layout.main);
 
-        if (!SoulTools.hasText(getSetting(AutoSettings.BASIC_AUTH_PASS_S, String.class))) {
+        // goto settings if it seems that the setup is incorrect etc...
+        if (!hasText(getSetting(AutoSettings.BASIC_AUTH_PASS_S, String.class))) {
             startActivityForResult(new Intent(this, SettingsActivity.class), 0);
             return;
         }

@@ -27,6 +27,8 @@
                  android:theme="@android:style/Theme.NoTitleBar"
                  android:allowBackup="true"
                  android:debuggable="true">
+
+        <!-- Activities -->
         <activity android:name=".activities.VerfluchterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -38,20 +40,30 @@
 
         <service android:name=".services.WorkTimeNotifierService"/>
         <service android:name=".services.RefreshService"/>
+
+        <!-- Receivers -->
+        <receiver android:name=".services.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
     </application>
+
+    <!-- permission stuff etc -->
 
     <uses-sdk android:minSdkVersion="6"/>
 
     <!-- PERMISSIONS -->
     <!-- well... yeah, for internet access... ;-) -->Z
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- to enable start on boot for our work time receiver -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- for suggesting "start/stop work" by getting to your workplace -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <!-- TESTING STUFF -->
     <uses-library android:name="android.test.runner"/>
-    <instrumentation
-            android:targetPackage="com.android.example.spinner"
-            android:name="android.test.InstrumentationTestRunner"/>
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="com.android.example.spinner"/>
 
 </manifest>

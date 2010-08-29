@@ -71,6 +71,7 @@ public final class R {
         public static final int about_menu_label=0x7f060007;
         public static final int about_menu_shortcut=0x7f060008;
         public static final int about_text=0x7f060017;
+        public static final int activated_work_time_check_service=0x7f060039;
         public static final int am_i_working_no=0x7f06002a;
         public static final int am_i_working_yes=0x7f060029;
         public static final int app_name=0x7f060000;
@@ -78,6 +79,7 @@ public final class R {
         public static final int basic_password_edit_label=0x7f06000e;
         public static final int continue_working_button=0x7f060009;
         public static final int dailyHoursLabel=0x7f06001d;
+        public static final int deactivated_work_time_check_service=0x7f06003a;
         public static final int domain_edit_label=0x7f06000b;
         public static final int domain_edittext_hint=0x7f06000c;
         public static final int endWork_button_text=0x7f060019;

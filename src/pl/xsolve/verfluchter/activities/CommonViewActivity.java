@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.R;
+import pl.xsolve.verfluchter.tools.Constants;
 
 /**
  * Common class for all "View" Activities, is supports menu handling etc
@@ -50,9 +51,11 @@ public abstract class CommonViewActivity extends Activity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        Log.v(TAG, "CommonViewActivity onCreate...");        
+        Log.v(TAG, "CommonViewActivity onCreate...");
 
-        autoSettings = AutoSettings.getInstance(getPreferences(MODE_PRIVATE));
+        autoSettings = AutoSettings.getInstance(getSharedPreferences(Constants.PREFS, MODE_PRIVATE));
+//        autoSettings = AutoSettings.getInstance(getPreferences(MODE_PRIVATE));
+        autoSettings.restoreSettings();
         autoSettings.restoreSettings();
         Log.v(TAG, "Loaded settings: " + autoSettings.print());
     }
@@ -113,6 +116,7 @@ public abstract class CommonViewActivity extends Activity {
     }
 
     //------------delegates------------------------------------------------------------------------
+
     public <T> T getSetting(String key, Class<T> clazz) {
         return autoSettings.getSetting(key, clazz);
     }
