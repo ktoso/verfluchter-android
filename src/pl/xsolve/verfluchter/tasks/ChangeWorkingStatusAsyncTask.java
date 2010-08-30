@@ -92,6 +92,10 @@ public class ChangeWorkingStatusAsyncTask extends RestAsyncTask<Void, Integer, R
         return response;
     }
 
+    /**
+     * 
+     * @param restResponse the fetched response, or null if some error was encountered
+     */
     @Override
     protected void onPostExecute(RestResponse restResponse) {
         listener.hideProgressDialog();

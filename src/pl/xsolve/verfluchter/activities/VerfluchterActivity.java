@@ -29,7 +29,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.common.base.Joiner;
-import org.apache.http.cookie.Cookie;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusAsyncTask;
 import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusListener;
@@ -54,6 +53,8 @@ import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 public class VerfluchterActivity extends CommonViewActivity
         implements RefreshDataListener, ChangeWorkingStatusListener {
 
+//---------------------------- Fields ----------------------------------------------------------
+
     // logger tag
     private final static String TAG = VerfluchterActivity.class.getSimpleName();
 
@@ -74,9 +75,6 @@ public class VerfluchterActivity extends CommonViewActivity
     // Global Broadcast Receiver
     BroadcastReceiver broadcastReceiver;
 
-    // Login cookie ;-)
-    Cookie verfluchtesCookie = null;
-
     //this pair represents the hours and mins worked today
     HourMin workedTime = new HourMin(0, 0);
 
@@ -88,15 +86,17 @@ public class VerfluchterActivity extends CommonViewActivity
     final Handler handler = new Handler();
 
     // Loaded work hours data
-    static Date updatedAt = null;
+    static Date updatedAt;
     // cache for our last fetched response
-    private String plainTextResponse;
+    static String cachedPlainTextResponse;
 
     List<String> dziennie = new LinkedList<String>();
     List<String> tygodniowo = new LinkedList<String>();
     List<String> miesiecznie = new LinkedList<String>();
 
     static AutoSettings settingsForTasksReference;
+
+//---------------------------- Methods ---------------------------------------------------------
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,18 +121,16 @@ public class VerfluchterActivity extends CommonViewActivity
         currentlyWorkingText = (TextView) findViewById(R.id.currently_working_text);
 
         initListeners();
-        Log.v(TAG, autoSettings.print());
 
         if (isTrue(getSetting(USE_REMINDER_SERVICE_B, Boolean.class))) {
             stopService(new Intent(this, WorkTimeNotifierService.class));
             startService(new Intent(this, WorkTimeNotifierService.class));
-            showToast("Uaktywniono serwis powiadamiania o przekroczonym czasie pracy.");
         }
 
         if (updatedAt == null) {
             new RefreshDataAsyncTask(this).execute();
-        } else if (plainTextResponse != null) {
-            updateWorkedHoursStats(plainTextResponse);
+        } else if (cachedPlainTextResponse != null) {
+            updateWorkedHoursStats(cachedPlainTextResponse);
         }
 
         //todo remove me
@@ -155,7 +153,7 @@ public class VerfluchterActivity extends CommonViewActivity
                 }
 //            else if (RefreshService.INTENT_FRESH_DATA.equals(action)) {
 //                Log.d(TAG, "Received " + RefreshService.INTENT_FRESH_DATA);
-//                updateWorkedHoursStats(intent.getStringExtra("plainTextResponse"));
+//                updateWorkedHoursStats(intent.getStringExtra("cachedPlainTextResponse"));
 //            }
             }
         };
@@ -205,7 +203,8 @@ public class VerfluchterActivity extends CommonViewActivity
         boolean byloDziennie = false, byloTygodniowo = false, byloMiesiecznie = false;
 
         // cache the response
-        this.plainTextResponse = plainTextResponse;
+        updatedAt = new Date();
+        cachedPlainTextResponse = plainTextResponse;
 
         // so we dont get into each others way
         workTimeUpdaterTimer.cancel();
@@ -213,8 +212,6 @@ public class VerfluchterActivity extends CommonViewActivity
         dziennie.clear();
         tygodniowo.clear();
         miesiecznie.clear();
-
-        updatedAt = new Date();
 
         for (String line : plainTextResponse.split("\n")) {
             if (line.trim().equals("")) {
@@ -243,8 +240,7 @@ public class VerfluchterActivity extends CommonViewActivity
                 dziennie.add(new StringBuilder(strings[0].replaceAll(":", "")).append(" ")
                         .append(SoulTools.getDisplayDay(strings[0]))
                         .append(": ")
-                        .append(strings[1].replaceAll(":", "h "))
-                        .append("m")
+                        .append(new HourMin(strings[1]).pretty())
                         .toString());
             } else if (!byloMiesiecznie) {
                 tygodniowo.add(line);
@@ -305,14 +301,14 @@ public class VerfluchterActivity extends CommonViewActivity
         workTimeToday.setText(hourAndMin.pretty());
     }
 
+    public static AutoSettings getAutoSettings() {
+        return settingsForTasksReference;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         workTimeUpdaterTimer.cancel();
-    }
-
-    public static AutoSettings getAutoSettings() {
-        return settingsForTasksReference;
     }
 
 //--------------------------- Async Task handling ---------------------------------------------
@@ -343,7 +339,10 @@ public class VerfluchterActivity extends CommonViewActivity
     public void afterChangeWorkingStatus(final RestResponse restResponse) {
         handler.post(new Runnable() {
             public void run() {
-                progressDialog = ProgressDialog.show(VerfluchterActivity.this, "", "Trwa przetwarzanie odpowiedi serwera. Jeszcze tylko momencik.", true);
+                progressDialog = ProgressDialog.show(VerfluchterActivity.this,
+                        "",
+                        "Trwa przetwarzanie odpowiedi serwera. Jeszcze tylko momencik.",
+                        true);
                 String responseMessage = restResponse.getResponse();
 
                 setAmICurrentlyWorking(responseMessage);
@@ -377,7 +376,7 @@ public class VerfluchterActivity extends CommonViewActivity
     public void showProgressDialog(final String title, final String message, final boolean indeterminate) {
         handler.post(new Runnable() {
             public void run() {
-                progressDialog = ProgressDialog.show(VerfluchterActivity.this, title, message, indeterminate);
+                progressDialog = ProgressDialog.show(VerfluchterActivity.this, title, message, indeterminate, true);
             }
         });
     }
@@ -401,7 +400,6 @@ public class VerfluchterActivity extends CommonViewActivity
             }
         });
     }
-
 
     @Override
     public void showErrorMessage(final String error) {

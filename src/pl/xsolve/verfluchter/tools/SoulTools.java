@@ -19,8 +19,8 @@ package pl.xsolve.verfluchter.tools;
 
 import android.util.Log;
 import android.util.Pair;
+import pl.xsolve.verfluchter.exceptions.RestResponseException;
 import pl.xsolve.verfluchter.rest.RestResponse;
-import pl.xsolve.verfluchter.rest.RestResponseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;

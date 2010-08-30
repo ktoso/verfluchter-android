@@ -15,7 +15,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pl.xsolve.verfluchter.rest;
+package pl.xsolve.verfluchter.exceptions;
 
 /**
  * @author Konrad Ktoso Malawski

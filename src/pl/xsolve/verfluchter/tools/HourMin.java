@@ -17,8 +17,6 @@
 
 package pl.xsolve.verfluchter.tools;
 
-import android.util.Pair;
-
 /**
  * @author Konrad Ktoso Malawski
  */
@@ -29,6 +27,14 @@ public class HourMin {
     public HourMin(int hour, int min) {
         this.hour = hour;
         this.min = min;
+    }
+
+    /**
+     * Used to create an HourMin instance from an string
+     * @param timeString An well formatted time string such as "15:45"
+     */
+    public HourMin(String timeString) {
+        this(Integer.valueOf(timeString.split(":")[0]), Integer.valueOf(timeString.split(":")[1]));
     }
 
     public HourMin addMin(int minutes) {

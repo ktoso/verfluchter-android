@@ -95,9 +95,8 @@ public class RefreshDataAsyncTask extends RestAsyncTask<Void, Integer, RestRespo
     }
 
     /**
-     * This is called in the UI Thread
-     *
-     * @param restResponse the result of this task
+     * 
+     * @param restResponse the fetched response, or null if some error was encountered
      */
     @Override
     protected void onPostExecute(RestResponse restResponse) {
