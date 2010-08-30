@@ -17,6 +17,7 @@
 
 package pl.xsolve.verfluchter.activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.os.Bundle;
@@ -75,26 +76,25 @@ public class VerfluchterActivity extends CommonViewActivity
     // Global Broadcast Receiver
     BroadcastReceiver broadcastReceiver;
 
-    //this pair represents the hours and mins worked today
-    HourMin workedTime = new HourMin(0, 0);
-
-    // am I currently working?
-    boolean amICurrentlyWorking = false;
-
     // Need handler for callbacks to the UI thread
     // http://developer.android.com/guide/appendix/faq/commontasks.html#threading
     final Handler handler = new Handler();
-
-    // Loaded work hours data
-    static Date updatedAt;
-    // cache for our last fetched response
-    static String cachedPlainTextResponse;
 
     List<String> dziennie = new LinkedList<String>();
     List<String> tygodniowo = new LinkedList<String>();
     List<String> miesiecznie = new LinkedList<String>();
 
     static AutoSettings settingsForTasksReference;
+
+    //------------------------ Basic cache ----------------------------
+    // Loaded work hours data
+    static Date updatedAt;
+    // cache for our last fetched response
+    static String cachedPlainTextResponse;
+    //this pair represents the hours and mins worked today
+    static HourMin workedTime = new HourMin(0, 0);
+    // am I currently working?
+    static boolean amICurrentlyWorking = false;
 
 //---------------------------- Methods ---------------------------------------------------------
 
@@ -130,10 +130,11 @@ public class VerfluchterActivity extends CommonViewActivity
         if (updatedAt == null) {
             new RefreshDataAsyncTask(this).execute();
         } else if (cachedPlainTextResponse != null) {
+            updateWorkedToday(workedTime);
+            setAmICurrentlyWorking(amICurrentlyWorking);
             updateWorkedHoursStats(cachedPlainTextResponse);
         }
 
-        //todo remove me
         restartWorkTimeUpdater();
     }
 
@@ -163,23 +164,23 @@ public class VerfluchterActivity extends CommonViewActivity
         filter.addAction(WorkTimeNotifierService.INTENT_HEY_STOP_WORKING);
         registerReceiver(broadcastReceiver, filter);
 
+        final VerfluchterActivity self = VerfluchterActivity.this;
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View view) {
-                new RefreshDataAsyncTask(VerfluchterActivity.this).execute();
+                new RefreshDataAsyncTask(self).execute();
             }
         });
 
         startWorkButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                new ChangeWorkingStatusAsyncTask(VerfluchterActivity.this, true).execute();
+                new ChangeWorkingStatusAsyncTask(self, true).execute();
             }
         });
 
         stopWorkButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                new ChangeWorkingStatusAsyncTask(VerfluchterActivity.this, false).execute();
+                new ChangeWorkingStatusAsyncTask(self, false).execute();
             }
         });
     }
