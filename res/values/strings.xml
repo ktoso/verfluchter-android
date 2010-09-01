@@ -39,7 +39,7 @@
         simple website - that said, it works really quite well... ;-)\n
         \n
         The source of this program is available on the GNU GPLv3 license and can be downloaded from\n
-        http://www.github.com/ktoso\n
+        http://www.github.com/ktoso/verfluchter-android\n
     </string>
 
     <string name="startWork_button_text">Rozpocznij pracę</string>
@@ -87,5 +87,7 @@
     </string>
     <string name="deactivated_work_time_check_service">Wyłączono serwis powiadamiania o przekroczonym czasie pracy.
     </string>
+
+    <string name="invalidWorkTimeRange">Zakres czasów pracy nie jest poprawny.</string>
 
 </resources>

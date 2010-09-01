@@ -26,10 +26,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
-import pl.xsolve.verfluchter.tasks.general.CanDisplayProgress;
-import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.R;
+import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
+import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.Constants;
 
 /**
@@ -37,7 +36,8 @@ import pl.xsolve.verfluchter.tools.Constants;
  *
  * @author Konrad Ktoso Malawski
  */
-public abstract class CommonViewActivity extends Activity {
+public abstract class CommonViewActivity extends Activity
+        implements CanDisplayErrorMessages {
 
     // logger tag
     private final static String TAG = CommonViewActivity.class.getSimpleName();
@@ -117,6 +117,11 @@ public abstract class CommonViewActivity extends Activity {
         showToast(message, Toast.LENGTH_SHORT);
     }
 
+    @Override
+    public void showErrorMessage(String error) {
+        showToast(error, Toast.LENGTH_LONG);
+    }
+
     //------------delegates------------------------------------------------------------------------
 
     public <T> T getSetting(String key, Class<T> clazz) {
@@ -125,5 +130,5 @@ public abstract class CommonViewActivity extends Activity {
 
     public <T> void setSetting(String key, T value) {
         autoSettings.setSetting(key, value);
-    }    
+    }
 }

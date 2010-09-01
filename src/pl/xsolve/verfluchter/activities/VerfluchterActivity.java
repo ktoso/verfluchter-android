@@ -17,7 +17,6 @@
 
 package pl.xsolve.verfluchter.activities;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.os.Bundle;
@@ -31,12 +30,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.common.base.Joiner;
 import pl.xsolve.verfluchter.R;
-import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusAsyncTask;
-import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusListener;
-import pl.xsolve.verfluchter.tasks.RefreshDataListener;
 import pl.xsolve.verfluchter.rest.RestResponse;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
+import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusAsyncTask;
+import pl.xsolve.verfluchter.tasks.ChangeWorkingStatusListener;
 import pl.xsolve.verfluchter.tasks.RefreshDataAsyncTask;
+import pl.xsolve.verfluchter.tasks.RefreshDataListener;
+import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
+import pl.xsolve.verfluchter.tasks.general.CanDisplayProgress;
 import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.Constants;
 import pl.xsolve.verfluchter.tools.HourMin;
@@ -44,7 +45,7 @@ import pl.xsolve.verfluchter.tools.SoulTools;
 
 import java.util.*;
 
-import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.AutoSettings.USE_REMINDER_SERVICE_B;
 import static pl.xsolve.verfluchter.tools.SoulTools.hasText;
 import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 
@@ -52,7 +53,8 @@ import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
  * @author Konrad Ktoso Malawski
  */
 public class VerfluchterActivity extends CommonViewActivity
-        implements RefreshDataListener, ChangeWorkingStatusListener {
+        implements RefreshDataListener, ChangeWorkingStatusListener,
+        CanDisplayErrorMessages, CanDisplayProgress {
 
 //---------------------------- Fields ----------------------------------------------------------
 
@@ -304,6 +306,10 @@ public class VerfluchterActivity extends CommonViewActivity
 
     public static AutoSettings getAutoSettings() {
         return settingsForTasksReference;
+    }
+
+    public static boolean isCurrentlyWorking() {
+        return amICurrentlyWorking;
     }
 
     @Override

@@ -13,6 +13,9 @@ import pl.xsolve.verfluchter.services.RefreshService;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
 import pl.xsolve.verfluchter.tools.SoulTools;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static pl.xsolve.verfluchter.tools.AutoSettings.*;
 import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 
@@ -87,6 +90,7 @@ public class SettingsActivity extends CommonViewActivity {
 
     private void onSaveClick() {
         Log.v(TAG, autoSettings.print());
+        List<String> errors = new ArrayList<String>();
 
         String domain = domainEditText.getText().toString();
         domain = domain.replaceAll("http://", "").replaceAll("https://", "");
@@ -107,14 +111,20 @@ public class SettingsActivity extends CommonViewActivity {
         }
 
         Integer startHour = workingHourStartPicker.getCurrentHour();
-        autoSettings.setSetting(WORKING_HOURS_START_HOUR_I, startHour);
         Integer startMin = workingHourStartPicker.getCurrentMinute();
-        autoSettings.setSetting(WORKING_HOURS_START_MIN_I, startMin);
-
         Integer endHour = workingHourEndPicker.getCurrentHour();
-        autoSettings.setSetting(WORKING_HOURS_END_HOUR_I, endHour);
         Integer endMin = workingHourEndPicker.getCurrentMinute();
-        autoSettings.setSetting(WORKING_HOURS_END_MIN_I, endMin);
+
+        // simple validation
+        if (SoulTools.validateTimeRange(startHour, startMin, endHour, endMin)) {
+            autoSettings.setSetting(WORKING_HOURS_START_HOUR_I, startHour);
+            autoSettings.setSetting(WORKING_HOURS_START_MIN_I, startMin);
+            autoSettings.setSetting(WORKING_HOURS_END_HOUR_I, endHour);
+            autoSettings.setSetting(WORKING_HOURS_END_MIN_I, endMin);
+        } else {
+            errors.add(getString(R.string.invalidWorkTimeRange));
+        }
+
 
         boolean useWorkTimeNotifier = useWorkTimeNotifierCheckBox.isChecked();
         autoSettings.setSetting(USE_REMINDER_SERVICE_B, useWorkTimeNotifier);
@@ -141,9 +151,18 @@ public class SettingsActivity extends CommonViewActivity {
         boolean useSound = useSoundCheckBox.isChecked();
         autoSettings.setSetting(USE_SOUND_B, useSound);
 
-        autoSettings.persistSettings();
-        autoSettings.print();
+        if (errors.size() == 0) {
+            //no errors, save and go back to main screen
+            autoSettings.persistSettings();
+            autoSettings.print();
 
-        startActivityForResult(new Intent(this, VerfluchterActivity.class), 0);
+            startActivityForResult(new Intent(this, VerfluchterActivity.class), 0);
+        } else {
+            Log.v(TAG, "Some errors in the form...");
+            for (String error : errors) {
+                Log.v(TAG, "--- " + error);
+                showErrorMessage(error);
+            }
+        }
     }
 }

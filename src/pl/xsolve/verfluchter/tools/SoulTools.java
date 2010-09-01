@@ -19,6 +19,7 @@ package pl.xsolve.verfluchter.tools;
 
 import android.util.Log;
 import android.util.Pair;
+import pl.xsolve.verfluchter.activities.VerfluchterActivity;
 import pl.xsolve.verfluchter.exceptions.RestResponseException;
 import pl.xsolve.verfluchter.rest.RestResponse;
 
@@ -37,7 +38,7 @@ import java.util.GregorianCalendar;
  * @author Konrad Ktoso Malawski
  */
 public class SoulTools {
-    
+
     // logger tag
     private static final String TAG = SoulTools.class.getSimpleName();
 
@@ -81,12 +82,28 @@ public class SoulTools {
         return today == Calendar.SUNDAY || today == Calendar.SATURDAY;
     }
 
+    /**
+     * Checks if work-time has ended yet or not
+     *
+     * @param now the current time calendar
+     * @return true if one should stop working, false otherwise
+     */
     public static boolean workTimeIsOver(GregorianCalendar now) {
-        return now.get(Calendar.HOUR_OF_DAY) > Constants.DEFAULT.WORKING_HOURS_END_HOUR;
+        AutoSettings autoSettings = VerfluchterActivity.getAutoSettings();
+        return now.get(Calendar.HOUR_OF_DAY) >= autoSettings.getSetting(AutoSettings.WORKING_HOURS_END_HOUR_I, Integer.class)
+                && now.get(Calendar.MINUTE) >= autoSettings.getSetting(AutoSettings.WORKING_HOURS_END_MIN_I, Integer.class);
     }
 
-    public static boolean workTimeHasntComeYet(GregorianCalendar now) {
-        return now.get(Calendar.HOUR_OF_DAY) < Constants.DEFAULT.WORKING_HOURS_START_HOUR;
+    /**
+     * Checks if work-time has begun already or not
+     *
+     * @param now the current time calendar
+     * @return true if one should be working, false otherwise
+     */
+    public static boolean workTimeHasBegun(GregorianCalendar now) {
+        AutoSettings autoSettings = VerfluchterActivity.getAutoSettings();
+        return now.get(Calendar.HOUR_OF_DAY) >= autoSettings.getSetting(AutoSettings.WORKING_HOURS_START_HOUR_I, Integer.class)
+                && now.get(Calendar.MINUTE) >= autoSettings.getSetting(AutoSettings.WORKING_HOURS_START_MIN_I, Integer.class);
     }
 
     /**
@@ -126,6 +143,7 @@ public class SoulTools {
     }
 
     //todo this method probably sux
+
     public static CharSequence getYesterdayString() {
         try {
             Calendar calendar = Calendar.getInstance();
@@ -178,11 +196,16 @@ public class SoulTools {
      * This is an idiotic method for avoiding null pointers if an got setting for example is null
      * The properties will then return such Boolean bla = null; which renders getSetting() unusable in if statements
      * Thats what for this method is...
+     *
      * @param bool the "may be null" Boolean object
      * @return false if the Boolean was null or false, true otherwise
      */
     public static boolean isTrue(Boolean bool) {
-        return bool == null ?  false : bool;
+        return bool == null ? false : bool;
+    }
+
+    public static boolean validateTimeRange(int startHour, int startMin, int endHour, int endMin) {
+        return startHour < endHour || (startHour == endHour && startMin < endMin);
     }
 }
                               

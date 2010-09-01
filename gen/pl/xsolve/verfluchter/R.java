@@ -87,6 +87,7 @@ public final class R {
         public static final int footerCopy=0x7f060020;
         public static final int hey_stop_working_title=0x7f060026;
         public static final int https=0x7f060016;
+        public static final int invalidWorkTimeRange=0x7f06003b;
         public static final int login_edit_label=0x7f06000f;
         public static final int login_edittext_hint=0x7f060013;
         public static final int main_menu_label=0x7f060005;

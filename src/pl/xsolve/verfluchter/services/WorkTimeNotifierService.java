@@ -35,8 +35,6 @@ import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static pl.xsolve.verfluchter.tools.SoulTools.workTimeIsOver;
-
 /**
  * @author Konrad Ktoso Malawski
  */
@@ -95,15 +93,27 @@ public class WorkTimeNotifierService extends Service {
         Log.v(TAG, "WorkTimeNotifierService is processing.");
 
         GregorianCalendar now = new GregorianCalendar();
-//        if (isWorking()) {
+
         if (SoulTools.itsWeekend(now)) {
             return;
         }
 
-        if (workTimeIsOver(now)) {
-            notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
+        boolean workTimeHasBegun = SoulTools.workTimeHasBegun(now);
+        boolean workTimeIsOver = SoulTools.workTimeIsOver(now);
+
+        if (isWorking()) {
+            if (workTimeIsOver) {
+                notifyUser(WorkStatus.YOU_CAN_STOP_WORKING);
+            }
+        } else {// not working, but should I...?
+            if (workTimeHasBegun && !workTimeIsOver) {
+                notifyUser(WorkStatus.YOU_SHOULD_START_WORKING);
+            }
         }
-//        }
+    }
+
+    private boolean isWorking() {
+        return VerfluchterActivity.isCurrentlyWorking();
     }
 
     private void notifyUser(WorkStatus workStatus) {
@@ -117,15 +127,9 @@ public class WorkTimeNotifierService extends Service {
         CharSequence contentText;
 
         // setup strings etc
-        switch (workStatus) {
-            case YOU_CAN_STOP_WORKING:
-                titleText = getString(workStatus.contextTitle);
-                contentTitle = getString(workStatus.contextTitle);
-                contentText = getString(workStatus.contentText);
-                break;
-            default:
-                return;
-        }
+        titleText = getString(workStatus.contextTitle);
+        contentTitle = getString(workStatus.contextTitle);
+        contentText = getString(workStatus.contentText);
 
         // build the notification/intent
         Notification notification = new Notification(icon, titleText, when);
