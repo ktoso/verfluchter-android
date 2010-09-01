@@ -5,7 +5,9 @@ Pomaga "nie-zapomnieć" o czasie pracy i przypomina o włączaniu/wyłączaniu z
 Ponadto planowane jest automatyczne włączanie w momencie pojawienia się na miejscu pracy - dzięki korzystaniu z GPS.
 
 INFO: The name "verfluchter" means "cursed" in German, and it's an (somehow) humourous take on all these time tracking stuff ;-)
--------------------------------------------------------------------------------
+--------LINKS------------------------------------------------------------------
+Sources: http://github.com/ktoso/verfluchter-android
+"Fresh" APK: http://github.com/downloads/ktoso/verfluchter-android/verfluchter-android.apk
 
 --------LICENSE STUFF----------------------------------------------------------
     This source code has been made available on the GNU GPLv3 License.
@@ -22,5 +24,5 @@ INFO: The name "verfluchter" means "cursed" in German, and it's an (somehow) hum
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see < http://www.gnu.org/licenses/ >.
 -------------------------------------------------------------------------------
