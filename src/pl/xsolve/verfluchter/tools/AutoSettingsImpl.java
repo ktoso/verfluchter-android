@@ -49,7 +49,7 @@ public class AutoSettingsImpl extends Activity implements AutoSettings {
     protected static final String LONG_SUFFIX = "_L";
 
     @Inject
-    private AutoSettingsImpl(SharedPreferences preferences, PasswdUtil passwdUtil) {
+    public AutoSettingsImpl(SharedPreferences preferences, PasswdUtil passwdUtil) {
         this.preferences = preferences;
         this.passwdUtil = passwdUtil;
 
