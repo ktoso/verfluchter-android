@@ -23,7 +23,7 @@ public final class R {
     }
     public static final class id {
         public static final int about_menu_item=0x7f090015;
-        public static final int about_text=0x7f090000;
+        public static final int about_webview=0x7f090000;
         public static final int basic_login_edittext=0x7f090009;
         public static final int basic_password_edittext=0x7f09000a;
         public static final int currently_working_textview=0x7f090006;

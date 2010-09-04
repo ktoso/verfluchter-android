@@ -17,7 +17,7 @@ import roboguice.inject.InjectView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pl.xsolve.verfluchter.tools.AutoSettingsImpl.*;
+import static pl.xsolve.verfluchter.tools.AutoSettings.*;
 import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 
 /**
@@ -87,7 +87,6 @@ public class SettingsActivity extends CommonViewActivity {
     }
 
     private void onSaveClick() {
-        Log.v(TAG, autoSettings.print());
         List<String> errors = new ArrayList<String>();
 
         String domain = domainEditText.getText().toString();
@@ -146,13 +145,9 @@ public class SettingsActivity extends CommonViewActivity {
             showToast("Wyłączono serwis automatycznego odświeżania danych.");
         }
 
-        boolean useSound = useSoundCheckBox.isChecked();
-        autoSettings.setSetting(USE_SOUND_B, useSound);
-
         if (errors.size() == 0) {
             //no errors, save and go back to main screen
             autoSettings.persistSettings();
-            autoSettings.print();
 
             startActivityForResult(new Intent(this, VerfluchterActivity.class), 0);
         } else {

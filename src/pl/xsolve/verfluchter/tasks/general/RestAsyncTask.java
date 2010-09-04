@@ -32,11 +32,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static pl.xsolve.verfluchter.tools.AutoSettingsImpl.*;
+import static pl.xsolve.verfluchter.tools.AutoSettings.*;
 
 /**
  * An common class for all AsyncTasks that need to use our rest client
- *
+ * <p/>
  * Some more info about the "extends <_, _, _>":
  * The 3 Type params mean as follows:
  * 1. Params, the type of the parameters sent to the task upon execution.
@@ -142,6 +142,7 @@ public abstract class RestAsyncTask<Params, Progress, Result> extends AsyncTask<
 
     /**
      * Checks if the task encountered any errors (that were added using the @see enqueueErrorMessage method)
+     *
      * @return
      */
     protected boolean hadErrors() {

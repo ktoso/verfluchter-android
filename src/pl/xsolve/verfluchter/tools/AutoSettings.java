@@ -43,5 +43,5 @@ public interface AutoSettings {
 
     <T> void setSetting(String key, T value);
 
-    String print();
+    <T> void setSetting(String key, T value, boolean persistImmediately);
 }

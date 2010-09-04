@@ -17,24 +17,30 @@
 
 package pl.xsolve.verfluchter.activities;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.widget.TextView;
-import com.google.inject.Inject;
+import android.webkit.WebView;
 import pl.xsolve.verfluchter.R;
+import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
+
+import static com.google.common.base.Charsets.UTF_8;
 
 /**
  * @author Konrad Ktoso Malawski
  */
 public class AboutViewActivity extends CommonViewActivity {
 
-    @InjectView(R.id.about_text)
-    TextView aboutText;
+    @InjectView(R.id.about_webview)
+    WebView aboutText;
+
+    @InjectResource(R.string.about_text)
+    String about;
 
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.about);
+
+        aboutText.loadData(about, "text/html", UTF_8.name());
     }
 }

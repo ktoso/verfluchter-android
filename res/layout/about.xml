@@ -4,10 +4,10 @@
              android:layout_height="fill_parent"
              android:background="@color/white">
 
-    <TextView android:id="@+id/about_text"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:text="@string/about_text"
-              style="@style/simpleBlackText"
+    <WebView android:id="@+id/about_webview"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:text="@string/about_text"
+             style="@style/simpleBlackText"
             />
 </FrameLayout>

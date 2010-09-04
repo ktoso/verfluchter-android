@@ -33,9 +33,6 @@ public class AutoSettingsImpl extends Activity implements AutoSettings {
     // Logger tag
     private static final String TAG = AutoSettingsImpl.class.getSimpleName();
 
-//    My instance, "the one to rule them all"
-//    private static AutoSettings myInstance;
-
     protected SharedPreferences preferences;
 
     protected PasswdUtil passwdUtil;
@@ -69,7 +66,7 @@ public class AutoSettingsImpl extends Activity implements AutoSettings {
 
         restoreSettings();
     }
-    
+
     /**
      * Restore preferences and load them into our variables
      */
@@ -147,9 +144,11 @@ public class AutoSettingsImpl extends Activity implements AutoSettings {
     }
 
     @Override
-    public String print() {
-        StringBuilder sb = new StringBuilder("-- AutoSettings (" + this + ") --\n");
-        sb.append(settings).append("\n");
-        return sb.append("------------------").toString();
+    public <T> void setSetting(String key, T value, boolean persistImmediately) {
+        settings.put(key, value);
+
+        if (persistImmediately) {
+            persistIntoPreferencesEditor(preferences.edit(), key, value);
+        }
     }
 }

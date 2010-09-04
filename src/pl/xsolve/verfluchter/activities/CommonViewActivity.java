@@ -29,8 +29,6 @@ import com.google.inject.Inject;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
 import pl.xsolve.verfluchter.tools.AutoSettings;
-import pl.xsolve.verfluchter.tools.AutoSettingsImpl;
-import pl.xsolve.verfluchter.tools.Constants;
 import roboguice.activity.GuiceActivity;
 
 /**
@@ -56,13 +54,8 @@ public abstract class CommonViewActivity extends GuiceActivity
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        Log.v(TAG, "CommonViewActivity onCreate...");
 
-//        autoSettings = AutoSettingsImpl.getInstance(getSharedPreferences(Constants.PREFS, MODE_PRIVATE));
-//        autoSettings = AutoSettings.getInstance(getPreferences(MODE_PRIVATE));
         autoSettings.restoreSettings();
-        autoSettings.restoreSettings();
-        Log.v(TAG, "Loaded settings: " + autoSettings.print());
     }
 
     @Override
@@ -86,8 +79,9 @@ public abstract class CommonViewActivity extends GuiceActivity
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Class clazz;
+        Log.v(TAG, "Switching view...");
 
+        Class clazz;
         switch (item.getItemId()) {
             case R.id.main_menu_item:
                 clazz = VerfluchterActivity.class;

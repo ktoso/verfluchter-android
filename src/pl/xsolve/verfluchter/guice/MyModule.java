@@ -17,8 +17,6 @@
 
 package pl.xsolve.verfluchter.guice;
 
-import com.google.inject.Binder;
-import com.google.inject.Module;
 import pl.xsolve.verfluchter.tools.AutoSettings;
 import pl.xsolve.verfluchter.tools.AutoSettingsImpl;
 import pl.xsolve.verfluchter.tools.PasswdUtil;
