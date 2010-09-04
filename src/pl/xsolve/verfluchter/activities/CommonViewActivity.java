@@ -17,7 +17,6 @@
 
 package pl.xsolve.verfluchter.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,22 +25,26 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+import com.google.inject.Inject;
 import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
 import pl.xsolve.verfluchter.tools.AutoSettings;
+import pl.xsolve.verfluchter.tools.AutoSettingsImpl;
 import pl.xsolve.verfluchter.tools.Constants;
+import roboguice.activity.GuiceActivity;
 
 /**
  * Common class for all "View" Activities, is supports menu handling etc
  *
  * @author Konrad Ktoso Malawski
  */
-public abstract class CommonViewActivity extends Activity
+public abstract class CommonViewActivity extends GuiceActivity
         implements CanDisplayErrorMessages {
 
     // logger tag
     private final static String TAG = CommonViewActivity.class.getSimpleName();
 
+    @Inject
     protected AutoSettings autoSettings;
 
     /**
@@ -55,7 +58,7 @@ public abstract class CommonViewActivity extends Activity
         super.onCreate(state);
         Log.v(TAG, "CommonViewActivity onCreate...");
 
-        autoSettings = AutoSettings.getInstance(getSharedPreferences(Constants.PREFS, MODE_PRIVATE));
+//        autoSettings = AutoSettingsImpl.getInstance(getSharedPreferences(Constants.PREFS, MODE_PRIVATE));
 //        autoSettings = AutoSettings.getInstance(getPreferences(MODE_PRIVATE));
         autoSettings.restoreSettings();
         autoSettings.restoreSettings();

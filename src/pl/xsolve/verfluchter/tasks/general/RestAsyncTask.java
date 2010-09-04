@@ -32,7 +32,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.AutoSettingsImpl.*;
 
 /**
  * An common class for all AsyncTasks that need to use our rest client

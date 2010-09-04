@@ -15,26 +15,22 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pl.xsolve.verfluchter.activities;
+package pl.xsolve.verfluchter.guice;
 
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.widget.TextView;
-import com.google.inject.Inject;
-import pl.xsolve.verfluchter.R;
-import roboguice.inject.InjectView;
+import com.google.inject.Module;
+import roboguice.application.GuiceApplication;
+
+import java.util.List;
 
 /**
+ * The "Application" class used to instanciate RoboGuice
+ *
  * @author Konrad Ktoso Malawski
  */
-public class AboutViewActivity extends CommonViewActivity {
-
-    @InjectView(R.id.about_text)
-    TextView aboutText;
+public class MyApplication extends GuiceApplication {
 
     @Override
-    public void onCreate(Bundle state) {
-        super.onCreate(state);
-        setContentView(R.layout.about);
+    protected void addApplicationModules(List<Module> modules) {
+        modules.add(new MyModule());
     }
 }

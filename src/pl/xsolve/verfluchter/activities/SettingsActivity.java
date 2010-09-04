@@ -12,11 +12,12 @@ import pl.xsolve.verfluchter.R;
 import pl.xsolve.verfluchter.services.RefreshService;
 import pl.xsolve.verfluchter.services.WorkTimeNotifierService;
 import pl.xsolve.verfluchter.tools.SoulTools;
+import roboguice.inject.InjectView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static pl.xsolve.verfluchter.tools.AutoSettings.*;
+import static pl.xsolve.verfluchter.tools.AutoSettingsImpl.*;
 import static pl.xsolve.verfluchter.tools.SoulTools.isTrue;
 
 /**
@@ -26,16 +27,27 @@ public class SettingsActivity extends CommonViewActivity {
 
     private final static String TAG = SettingsActivity.class.getSimpleName();
 
+    @InjectView(R.id.save_settings_button)
     Button saveButton;
+    @InjectView(R.id.domain_edittext)
     EditText domainEditText;
+    @InjectView(R.id.basic_login_edittext)
     EditText basicLoginEditText;
+    @InjectView(R.id.basic_password_edittext)
     EditText basicPasswordEditText;
+    @InjectView(R.id.login_edittext)
     EditText loginEditText;
+    @InjectView(R.id.password_edittext)
     EditText passwordEditText;
+    @InjectView(R.id.use_timer_service_check_checkbox)
     CheckBox useWorkTimeNotifierCheckBox;
+    @InjectView(R.id.use_refresher_service_check_checkbox)
     CheckBox useRefresherCheckBox;
+    @InjectView(R.id.use_sound_checkbox)
     CheckBox useSoundCheckBox;
+    @InjectView(R.id.working_hour_start_picker)
     TimePicker workingHourStartPicker;
+    @InjectView(R.id.working_hour_end_picker)
     TimePicker workingHourEndPicker;
 
     @Override
@@ -43,36 +55,22 @@ public class SettingsActivity extends CommonViewActivity {
         super.onCreate(state);
         setContentView(R.layout.settings);
 
-        saveButton = (Button) findViewById(R.id.save_settings_button);
-
-        domainEditText = (EditText) findViewById(R.id.domain_edittext);
         domainEditText.setText(autoSettings.getSetting(SERVER_DOMAIN_S, String.class));
 
-        basicLoginEditText = (EditText) findViewById(R.id.basic_login_edittext);
         basicLoginEditText.setText(autoSettings.getSetting(BASIC_AUTH_USER_S, String.class));
 
-        basicPasswordEditText = (EditText) findViewById(R.id.basic_password_edittext);
-
-        loginEditText = (EditText) findViewById(R.id.login_edittext);
         loginEditText.setText(autoSettings.getSetting(MY_AUTH_USER_S, String.class));
 
-        passwordEditText = (EditText) findViewById(R.id.password_edittext);
-
-        useWorkTimeNotifierCheckBox = (CheckBox) findViewById(R.id.timer_service_check_checkbox);
         useWorkTimeNotifierCheckBox.setChecked(getSetting(USE_REMINDER_SERVICE_B, Boolean.class));
 
-        useRefresherCheckBox = (CheckBox) findViewById(R.id.refresher_service_check_checkbox);
         useRefresherCheckBox.setChecked(getSetting(USE_REFRESHER_SERVICE_B, Boolean.class));
 
-        useSoundCheckBox = (CheckBox) findViewById(R.id.use_sound_checkbox);
         useSoundCheckBox.setChecked(isTrue(getSetting(USE_SOUND_B, Boolean.class)));
 
-        workingHourStartPicker = (TimePicker) findViewById(R.id.working_hour_start_picker);
         workingHourStartPicker.setIs24HourView(true);
         workingHourStartPicker.setCurrentHour(getSetting(WORKING_HOURS_START_HOUR_I, Integer.class));
         workingHourStartPicker.setCurrentMinute(getSetting(WORKING_HOURS_START_MIN_I, Integer.class));
 
-        workingHourEndPicker = (TimePicker) findViewById(R.id.working_hour_end_picker);
         workingHourEndPicker.setIs24HourView(true);
         workingHourEndPicker.setCurrentHour(getSetting(WORKING_HOURS_END_HOUR_I, Integer.class));
         workingHourEndPicker.setCurrentMinute(getSetting(WORKING_HOURS_END_MIN_I, Integer.class));

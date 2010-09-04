@@ -20,6 +20,7 @@
     <orderEntry type="library" name="Guava" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Android 2.1-update1 Platform" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="Android 2.1-update1 Platform" level="application" />
+    <orderEntry type="library" name="RoboGuice" level="project" />
   </component>
 </module>
 

@@ -21,21 +21,21 @@
                   android:gravity="center"
                   android:layout_gravity="center"
                   android:orientation="horizontal">
-        <Button android:id="@+id/startWork"
+        <Button android:id="@+id/start_work_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:text="@string/startWork_button_text"
                 />
-        <Button android:id="@+id/stopWork"
+        <Button android:id="@+id/stop_work_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:text="@string/endWork_button_text"
                 />
-        <ImageButton android:id="@+id/refreshButton"
+        <ImageButton android:id="@+id/refresh_button"
                      android:src="@drawable/ic_menu_refresh"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 />
     </LinearLayout>
 
-    <TextView android:id="@+id/workTimeTodayLabel"
+    <TextView android:id="@+id/work_time_today_label"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:gravity="center"
@@ -52,7 +52,7 @@
               android:text="@string/workedTodayLabel"
               style="@style/simpleBlackText"
             />
-    <TextView android:id="@+id/workTimeToday"
+    <TextView android:id="@+id/work_time_today"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:gravity="center"
@@ -61,7 +61,7 @@
               style="@style/work_time_today"
             />
 
-    <TextView android:id="@+id/currently_working_text"
+    <TextView android:id="@+id/currently_working_textview"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:gravity="center"

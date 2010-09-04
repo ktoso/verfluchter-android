@@ -38,10 +38,8 @@ import pl.xsolve.verfluchter.tasks.RefreshDataAsyncTask;
 import pl.xsolve.verfluchter.tasks.RefreshDataListener;
 import pl.xsolve.verfluchter.tasks.general.CanDisplayErrorMessages;
 import pl.xsolve.verfluchter.tasks.general.CanDisplayProgress;
-import pl.xsolve.verfluchter.tools.AutoSettings;
-import pl.xsolve.verfluchter.tools.Constants;
-import pl.xsolve.verfluchter.tools.HourMin;
-import pl.xsolve.verfluchter.tools.SoulTools;
+import pl.xsolve.verfluchter.tools.*;
+import roboguice.inject.InjectView;
 
 import java.util.*;
 
@@ -62,13 +60,20 @@ public class VerfluchterActivity extends CommonViewActivity
     private final static String TAG = VerfluchterActivity.class.getSimpleName();
 
     // UI components
+    @InjectView(R.id.start_work_button)
     Button startWorkButton;
+    @InjectView(R.id.stop_work_button)
     Button stopWorkButton;
+    @InjectView(R.id.refresh_button)
     ImageButton refreshButton;
+    @InjectView(R.id.hours_stats_textview)
     TextView hoursStatsTextView;
-    TextView workTimeTodayLabel;
+    @InjectView(R.id.work_time_today)
     TextView workTimeToday;
-    TextView currentlyWorkingText;
+    @InjectView(R.id.work_time_today_label)
+    TextView workTimeTodayLabel;
+    @InjectView(R.id.currently_working_textview)
+    TextView currentlyWorking;
 
     // other UI components (dialogs etc)
     ProgressDialog progressDialog;
@@ -93,8 +98,10 @@ public class VerfluchterActivity extends CommonViewActivity
     static Date updatedAt;
     // cache for our last fetched response
     static String cachedPlainTextResponse;
+    //when did I click the start work button?
+    static HourMin workStartedAt = null;
     //this pair represents the hours and mins worked today
-    static HourMin workedTime = new HourMin(0, 0);
+    static HourMin workHourMin = new HourMin(0, 0);
     // am I currently working?
     static boolean amICurrentlyWorking = false;
 
@@ -114,13 +121,12 @@ public class VerfluchterActivity extends CommonViewActivity
             return;
         }
 
-        hoursStatsTextView = (TextView) findViewById(R.id.hours_stats_textview);
-        workTimeTodayLabel = (TextView) findViewById(R.id.workTimeTodayLabel);
-        workTimeToday = (TextView) findViewById(R.id.workTimeToday);
-        stopWorkButton = (Button) findViewById(R.id.stopWork);
-        startWorkButton = (Button) findViewById(R.id.startWork);
-        refreshButton = (ImageButton) findViewById(R.id.refreshButton);
-        currentlyWorkingText = (TextView) findViewById(R.id.currently_working_text);
+        workTimeTodayLabel = (TextView) findViewById(R.id.work_time_today_label);
+        workTimeToday = (TextView) findViewById(R.id.work_time_today);
+        stopWorkButton = (Button) findViewById(R.id.stop_work_button);
+        startWorkButton = (Button) findViewById(R.id.start_work_button);
+        refreshButton = (ImageButton) findViewById(R.id.refresh_button);
+        currentlyWorking = (TextView) findViewById(R.id.currently_working_textview);
 
         initListeners();
 
@@ -132,7 +138,7 @@ public class VerfluchterActivity extends CommonViewActivity
         if (updatedAt == null) {
             new RefreshDataAsyncTask(this).execute();
         } else if (cachedPlainTextResponse != null) {
-            updateWorkedToday(workedTime);
+            updateWorkedToday(workHourMin);
             setAmICurrentlyWorking(amICurrentlyWorking);
             updateWorkedHoursStats(cachedPlainTextResponse);
         }
@@ -199,7 +205,7 @@ public class VerfluchterActivity extends CommonViewActivity
         amICurrentlyWorking = amIWorking;
 
         String text = amIWorking ? getString(R.string.am_i_working_yes) : getString(R.string.am_i_working_no);
-        currentlyWorkingText.setText(text);
+        currentlyWorking.setText(text);
     }
 
     private void updateWorkedHoursStats(String plainTextResponse) {
@@ -300,7 +306,7 @@ public class VerfluchterActivity extends CommonViewActivity
     }
 
     private synchronized void updateWorkedToday(HourMin hourAndMin) {
-        workedTime = hourAndMin;
+        workHourMin = hourAndMin;
         workTimeToday.setText(hourAndMin.pretty());
     }
 
@@ -373,7 +379,7 @@ public class VerfluchterActivity extends CommonViewActivity
         @Override
         public void run() {
             // if called using an handler  => back in the UI Thread :-)
-            updateWorkedToday(workedTime.addMin(1));
+            updateWorkedToday(workHourMin.addMin(1));
         }
     };
 

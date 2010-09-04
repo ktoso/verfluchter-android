@@ -125,7 +125,7 @@
                 />
 
         <!--noticications on/off-->
-        <CheckBox android:id="@+id/timer_service_check_checkbox"
+        <CheckBox android:id="@+id/use_timer_service_check_checkbox"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:text="@string/timer_service_check_text"
@@ -133,7 +133,7 @@
                 />
 
         <!--auto refresh data-->
-        <CheckBox android:id="@+id/refresher_service_check_checkbox"
+        <CheckBox android:id="@+id/use_refresher_service_check_checkbox"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:text="@string/refresher_service_check_text"
