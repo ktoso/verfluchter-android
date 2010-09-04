@@ -38,7 +38,6 @@
         </activity>
         <activity android:name=".activities.SettingsActivity" android:label="Settings"/>
         <activity android:name=".activities.AboutViewActivity" android:label="About"/>
-        <activity android:name=".activities.PrefsActivity"/>
 
         <service android:name=".services.WorkTimeNotifierService"/>
         <service android:name=".services.RefreshService"/>

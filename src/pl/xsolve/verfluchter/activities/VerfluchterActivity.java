@@ -121,13 +121,6 @@ public class VerfluchterActivity extends CommonViewActivity
             return;
         }
 
-        workTimeTodayLabel = (TextView) findViewById(R.id.work_time_today_label);
-        workTimeToday = (TextView) findViewById(R.id.work_time_today);
-        stopWorkButton = (Button) findViewById(R.id.stop_work_button);
-        startWorkButton = (Button) findViewById(R.id.start_work_button);
-        refreshButton = (ImageButton) findViewById(R.id.refresh_button);
-        currentlyWorking = (TextView) findViewById(R.id.currently_working_textview);
-
         initListeners();
 
         if (isTrue(getSetting(USE_REMINDER_SERVICE_B, Boolean.class))) {
