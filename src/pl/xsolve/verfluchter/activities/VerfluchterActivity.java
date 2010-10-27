@@ -239,7 +239,9 @@ public class VerfluchterActivity extends CommonViewActivity
                 String[] strings = line.split(" ");
                 updateWorkedToday(SoulTools.convertTimeStringToHourMin(strings[1]));
 
-                dziennie.add(new StringBuilder(strings[0].replaceAll(":", "")).append(" ")
+
+                strings[0] = strings[0].replaceAll(":", "");
+                dziennie.add(new StringBuilder(strings[0]).append(" ")
                         .append(SoulTools.getDisplayDay(strings[0]))
                         .append(": ")
                         .append(new HourMin(strings[1]).pretty())

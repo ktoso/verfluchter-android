@@ -142,8 +142,6 @@ public class SoulTools {
         return sdf.format(calendar.getTime());
     }
 
-    //todo this method probably sux
-
     public static CharSequence getYesterdayString() {
         try {
             Calendar calendar = Calendar.getInstance();
@@ -175,12 +173,16 @@ public class SoulTools {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(sdf.parse(datestring));
             calendar.setFirstDayOfWeek(Calendar.MONDAY);
-            return Constants.weekDays[calendar.get(Calendar.DAY_OF_WEEK) - 2];
+            int day = calendar.get(Calendar.DAY_OF_WEEK) - 2;
+            return Constants.weekDays[day];
         } catch (ParseException e) {
             Log.d(TAG, "Invalid dateString supplied...");
-            e.printStackTrace();
+            return "Invalid";
+//            e.printStackTrace();
+        } catch(ArrayIndexOutOfBoundsException e){
+            Log.d(TAG, "Array index out of bounds... (datestring = '" + datestring + ")");
+            return "Invalid";
         }
-        return "";
     }
 
     @SuppressWarnings({"ConstantConditions"})

@@ -4,7 +4,7 @@
     <defaultAnt bundledAnt="true" />
     <buildFile url="file://$PROJECT_DIR$/build.xml">
       <additionalClassPath>
-        <entry dir="file://$USER_HOME$/coding/libs/android-sdk-linux_86/tools/lib/x86" />
+        <entry dir="file://$PROJECT_DIR$/../../libs/android-sdk-linux_86/tools/lib/x86" />
       </additionalClassPath>
       <antReference projectDefault="true" />
       <customJdkName value="" />
