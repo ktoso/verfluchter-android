@@ -17,6 +17,8 @@
 
 package pl.xsolve.verfluchter.tools;
 
+import java.util.Calendar;
+
 /**
  * @author Konrad Ktoso Malawski
  */
@@ -43,13 +45,15 @@ public class Constants {
     public static final String DATE_FORMAT_YYYYMMDD = "yyyy-MM-dd";
 
     public static final String[] weekDays = new String[]{
+            "", // 0 is not used
+            "Niedziela",
             "Poniedziałek",
             "Wtorek",
             "Środa",
             "Czwartek",
             "Piątek",
             "Sobota",
-            "Niedziela"};
+    };
 
     public static class DEFAULT {
         public static final String SERVER_DOMAIN = "verfluchter.xsolve.pl";

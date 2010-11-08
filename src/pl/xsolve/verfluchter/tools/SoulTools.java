@@ -173,7 +173,7 @@ public class SoulTools {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(sdf.parse(datestring));
             calendar.setFirstDayOfWeek(Calendar.MONDAY);
-            int day = calendar.get(Calendar.DAY_OF_WEEK) - 2;
+            int day = calendar.get(Calendar.DAY_OF_WEEK);
             return Constants.weekDays[day];
         } catch (ParseException e) {
             Log.d(TAG, "Invalid dateString supplied...");
